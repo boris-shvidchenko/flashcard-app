@@ -1,12 +1,12 @@
 // Components
-import QuestionList from './QuestionList';
+import Sidebar from './Sidebar';
 import CardContainer from './CardContainer';
 
 export default function MainContainer() {
     return (
         <main className='h-[calc(100vh-4rem)] flex'>
             <section>
-                <QuestionList />
+                <Sidebar />
             </section>
             <section>
                 <CardContainer />

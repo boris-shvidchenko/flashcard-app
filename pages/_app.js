@@ -1,12 +1,22 @@
 // Components
 import Head from 'next/head';
 
+// Hooks
+import { createContext, useState } from 'react';
+
 // Styles
 import '../styles/globals.css';
 
+// Create Context for app
+export const Context = createContext();
+
 export default function MyApp({ Component, pageProps }) {
+
+  // Set up initial state
+  const [introMessage, setIntroMessage] = useState(true);
+
   return (
-    <>
+    <Context.Provider value={{ introMessage, setIntroMessage }}>
       <Head>
         <meta charSet='utf-8' />
         <meta name="description" content="Flashcard app" />
@@ -16,6 +26,6 @@ export default function MyApp({ Component, pageProps }) {
         <title>Flashcards</title>
       </Head>
       <Component {...pageProps} />
-    </>
+    </Context.Provider>
   )
 }

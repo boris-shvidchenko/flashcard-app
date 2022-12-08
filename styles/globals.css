@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .scroll {
+        @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent
+    }
+
+    .sidebar-section {
+        @apply flex items-center space-x-2 pl-20 h-10 border-gray-400 cursor-pointer
+    }
+}
