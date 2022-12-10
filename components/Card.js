@@ -1,5 +1,32 @@
+// Hooks
+import { useContext } from 'react';
+
+// Context
+import { Context } from '../pages/_app.js';
+
 export default function Card() {
+
+    // Get state from Context
+    const { state, dispatch } = useContext(Context);
+
+    // Flip between question and answer
+    function toggleAnswer(){
+        dispatch({ type:'showAnswer', showAnswer: !state.showAnswer})
+    }
+
     return (
-        <h1>card</h1>
+        <div className='bg-white border border-gray-400 w-[24.25rem] h-max p-10 mx-auto relative top-20 flex flex-col space-y-8 items-center rounded-sm'>
+
+            <section className='flex flex-col items-center'>
+                <p className={`${state.showAnswer ? 'hidden' : ''} mb-3`}>Question:</p>
+                <p className={`${state.showAnswer ? 'hidden' : ''} break-words w-max`}>{state?.cards[0]?.question}</p>
+                <p className={`${state.showAnswer ? '' : 'hidden'} mb-3`}>Answer:</p>
+                <p className={`${state.showAnswer ? '' : 'hidden'} break-words w-max`}>{state?.cards[0]?.answer}</p>
+            </section>
+
+            <button onClick={toggleAnswer} className={`msg-btn ${state.showAnswer ? 'hidden' : ''}`}>Show Answer</button>
+            <button onClick={toggleAnswer} className={`msg-btn ${state.showAnswer ? '' : 'hidden'}`}>Show Question</button>
+
+        </div>
     )
 }

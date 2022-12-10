@@ -17,7 +17,7 @@ export default function Sidebar() {
 
     // Opens delete message 
     function openDltMsg() {
-        dispatch({type: 'toggleDltMsg'})
+        if (state?.cards?.length !== 0) dispatch({type: 'toggleDltMsg'});
     }
 
     // Opens add card message
@@ -28,7 +28,7 @@ export default function Sidebar() {
     // Mapping through temporary card list to create Question component
     const questionList = state.cards.map((q) => {
         return (
-            <Question question={q.question} key={q.id}/>
+            <Question question={q.question} key={q.id} id={q.id}/>
         )
     })
 

@@ -1,11 +1,27 @@
 // Heroicons
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-export default function Question({ question }) {
+// Hooks
+import { useContext } from 'react';
+
+// Context
+import { Context } from '../pages/_app.js';
+
+export default function Question({ question, id }) {
+
+    // Get state from Context
+    const { state, dispatch } = useContext(Context);
+
+    // Delete one card from the card list
+    function dltOneCard() {
+        let tempCardArray = state.cards.filter((card) => card.id !== id);
+        dispatch({type:'updateCards', cards: tempCardArray});
+    }
+
     return(
         <div className='flex border-b border-gray-300 justify-evenly p-2'>
             <p className='truncate w-40'>{question}</p>
-            <XMarkIcon className='w-6 text-red-600 cursor-pointer' />
+            <XMarkIcon onClick={dltOneCard} className='w-6 text-red-600 cursor-pointer' />
         </div>
     )
 }
