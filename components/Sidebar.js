@@ -2,14 +2,26 @@
 import Question from './Question';
 
 // Heroicons
-import { PlusCircleIcon } from '@heroicons/react/24/outline';
-// import { PlusIcon } from '@heroicons/react/24/outline';
-import { TrashIcon } from '@heroicons/react/24/outline';
+import { PlusCircleIcon, PlusIcon, TrashIcon } from '@heroicons/react/24/outline';
+
+// Hooks
+import { useContext } from 'react';
+
+// Context
+import { Context } from '../pages/_app.js';
 
 // Temporary array for test questions (DELETE)
 import { tempCardList } from '../tempCardList';
 
 export default function Sidebar() {
+
+    // Get state from Context
+    const { setDeleteMessage } = useContext(Context);
+
+    // Opens delete message 
+    function openDltMsg() {
+        setDeleteMessage(true);
+    }
 
     // Mapping through temporary card list to create Question component
     const questionList = tempCardList.map((q) => {
@@ -30,7 +42,7 @@ export default function Sidebar() {
                 {questionList}
             </section>
 
-            <section className='sidebar-section border-t'>
+            <section onClick={openDltMsg} className='sidebar-section border-t'>
                 <p>Delete All</p>
                 <TrashIcon className='w-6' />
             </section>

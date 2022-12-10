@@ -10,4 +10,8 @@
     .sidebar-section {
         @apply flex items-center space-x-3 pl-20 h-10 border-gray-400 cursor-pointer
     }
+
+    .msg-btn {
+        @apply border border-black px-2 w-32
+    }
 }

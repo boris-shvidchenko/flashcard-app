@@ -14,9 +14,10 @@ export default function MyApp({ Component, pageProps }) {
 
   // Set up initial state
   const [introMessage, setIntroMessage] = useState(true);
+  const [deleteMessage, setDeleteMessage] = useState(false);
 
   return (
-    <Context.Provider value={{ introMessage, setIntroMessage }}>
+    <Context.Provider value={{ introMessage, setIntroMessage, deleteMessage, setDeleteMessage }}>
       <Head>
         <meta charSet='utf-8' />
         <meta name="description" content="Flashcard app" />
