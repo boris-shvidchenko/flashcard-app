@@ -19,7 +19,8 @@ export default function MyApp({ Component, pageProps }) {
     addCardMessage: false,
     newCard: {question: '', answer: '', id: ''},
     cards: [],
-    showAnswer: false
+    showAnswer: false,
+    showCard: {}
   }
 
   // Set up useReducer and reducer function
@@ -39,6 +40,8 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, cards: action.cards}
       case 'showAnswer':
         return {...state, showAnswer: !state.showAnswer}
+      case 'showCard':
+        return {...state, showCard: action.showCard}
       default:
         return state
     }

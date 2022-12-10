@@ -24,6 +24,7 @@ export default function Sidebar() {
     function toggleAddCardMsg() {
         dispatch({type: 'toggleAddCardMsg'})
     }
+    
 
     // Mapping through temporary card list to create Question component
     const questionList = state.cards.map((q) => {

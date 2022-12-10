@@ -21,8 +21,10 @@ export default function AddCardMessage() {
     // On submit prevents default, push new data to card array, closes add card message, and returns newCardData to default value
     function addCard(e) {
         e.preventDefault();
-        // apend new data to cards state array
         dispatch({type: 'updateCards', cards: [...state.cards, state.newCard]})
+
+        dispatch({type: 'showCard', showCard: state?.cards[0]})
+
         toggleAddCardMsg();
     }
 

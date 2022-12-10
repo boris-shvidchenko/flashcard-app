@@ -18,9 +18,14 @@ export default function Question({ question, id }) {
         dispatch({type:'updateCards', cards: tempCardArray});
     }
 
+    function showCard() {
+        const tempCard = state.cards.filter((card) => card.id === id);
+        dispatch({type: 'showCard', showCard: tempCard})
+    }
+
     return(
         <div className='flex border-b border-gray-300 justify-evenly p-2'>
-            <p className='truncate w-40'>{question}</p>
+            <p onClick={showCard} className='truncate w-40 cursor-pointer'>{question}</p>
             <XMarkIcon onClick={dltOneCard} className='w-6 text-red-600 cursor-pointer' />
         </div>
     )
