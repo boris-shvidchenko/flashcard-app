@@ -23,6 +23,12 @@ export default function Sidebar() {
         dispatch({type: 'toggleDltMsg'})
     }
 
+    // Opens add card message
+    function toggleAddCardMsg() {
+        dispatch({type: 'toggleAddCardMsg'})
+    }
+
+
     // Mapping through temporary card list to create Question component
     const questionList = tempCardList.map((q) => {
         return (
@@ -33,7 +39,7 @@ export default function Sidebar() {
     return (
         <div className='w-64 h-[calc(100vh-4rem)] border-r border-gray-400'>
 
-           <section className='sidebar-section border-b'>
+            <section onClick={toggleAddCardMsg} className='sidebar-section border-b'>
                 <p>Add Card</p>
                 <PlusCircleIcon className='w-6' />
             </section>

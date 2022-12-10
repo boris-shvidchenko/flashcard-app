@@ -1,4 +1,5 @@
 // Component
+import Card from './Card';
 
 // Hooks
 
@@ -10,7 +11,7 @@ export default function CardContainer() {
 
     return (
         <div className='bg-blue-200 w-[calc(100vw-16rem)] h-full'>
-            
+            <Card />
         </div>
     )
 }

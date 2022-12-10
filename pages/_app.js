@@ -7,6 +7,9 @@ import { createContext, useReducer } from 'react';
 // Styles
 import '../styles/globals.css';
 
+// Data (temp for now)
+import { tempCardList } from '../tempCardList';
+
 // Create Context for app
 export const Context = createContext();
 
@@ -15,7 +18,10 @@ export default function MyApp({ Component, pageProps }) {
   // Set up initial state
   const initialState = {
     introMessage: true,
-    deleteMessage: false
+    deleteMessage: false,
+    addCard: false,
+    newCardData: {question: '', answer: '', id: ''},
+    cards: tempCardList
   }
 
   // Set up useReducer and reducer function
@@ -27,10 +33,17 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, introMessage: false}
       case 'toggleDltMsg':
         return {...state, deleteMessage: !state.deleteMessage}
+      case 'toggleAddCardMsg':
+        return {...state, addCard: !state.addCard}
+      case 'updateNewCardData':
+        return {...state, newCardData: action.newCardData}
       default:
         return state
     }
   }
+
+  // Testing purposes
+  console.log(state);
 
   return (
     <Context.Provider value={{ state, dispatch }}>
