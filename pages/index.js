@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import MainContainer from '../components/MainContainer';
 import IntroMessage from '../components/IntroMessage';
 import DeleteMessage from '../components/DeleteMessage';
-import AddCard from '../components/AddCard';
+import AddCardMessage from '../components/AddCardMessage';
 
 // Hooks
 import { useContext } from 'react';
@@ -20,7 +20,7 @@ export default function Home() {
     <div>
       {state.introMessage && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
-      {state.addCard && <AddCard />}
+      {state.addCardMessage && <AddCardMessage />}
       <Header />
       <MainContainer />
     </div>

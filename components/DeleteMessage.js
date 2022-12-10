@@ -17,6 +17,12 @@ export default function DeleteMessage() {
         dispatch({type: 'toggleDltMsg'})
     }
 
+    // Deletes all cards, closes delete message
+    function dltAllCards() {
+        dispatch({type: 'updateCards', cards: []})
+        closeDltMsg()
+    }
+
     return (
         <div className='absolute flex justify-center bg-black/60 w-screen h-screen'>
             <div className='relative bg-white rounded-sm w-96 h-40 mt-32 p-10 text-center'>
@@ -25,7 +31,7 @@ export default function DeleteMessage() {
                 <p>Are you sure you want to delete all of your cards?</p>
 
                 <section className='flex items-center mx-auto justify-between px-2 mt-3 text-lg'>
-                    <button className='msg-btn'>Delete</button>
+                    <button className='msg-btn' onClick={dltAllCards}>Delete</button>
                     <button className='msg-btn' onClick={closeDltMsg}>Cancel</button>
                 </section>
 

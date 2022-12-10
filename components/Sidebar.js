@@ -10,9 +10,6 @@ import { useContext } from 'react';
 // Context
 import { Context } from '../pages/_app.js';
 
-// Temporary array for test questions (DELETE)
-import { tempCardList } from '../tempCardList';
-
 export default function Sidebar() {
 
     // Get state from Context
@@ -28,9 +25,8 @@ export default function Sidebar() {
         dispatch({type: 'toggleAddCardMsg'})
     }
 
-
     // Mapping through temporary card list to create Question component
-    const questionList = tempCardList.map((q) => {
+    const questionList = state.cards.map((q) => {
         return (
             <Question question={q.question} key={q.id}/>
         )
