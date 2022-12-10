@@ -4,6 +4,7 @@ import MainContainer from '../components/MainContainer';
 import IntroMessage from '../components/IntroMessage';
 import DeleteMessage from '../components/DeleteMessage';
 import AddCardMessage from '../components/AddCardMessage';
+import EditCardMessage from '../components/EditCardMessage';
 
 // Hooks
 import { useContext } from 'react';
@@ -21,6 +22,7 @@ export default function Home() {
       {state.introMessage && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
       {state.addCardMessage && <AddCardMessage />}
+      {state.editCardMessage && <EditCardMessage />}
       <Header />
       <MainContainer />
     </div>

@@ -18,9 +18,11 @@ export default function Question({ question, id }) {
         dispatch({type:'updateCards', cards: tempCardArray});
     }
 
+    // Changes showAnswer to false so that the answer is hidden for the other cards, then search cards for the card with the same id as selected card (in sidebar) to render to page. 
     function showCard() {
+        if (state.showAnswer) dispatch({ type:'showAnswer', showAnswer: false});
         const tempCard = state.cards.filter((card) => card.id === id);
-        dispatch({type: 'showCard', showCard: tempCard})
+        dispatch({type: 'showCard', showCard: tempCard[0]})
     }
 
     return(
