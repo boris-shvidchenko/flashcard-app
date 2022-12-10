@@ -2,7 +2,7 @@
 import Head from 'next/head';
 
 // Hooks
-import { createContext, useState } from 'react';
+import { createContext, useReducer } from 'react';
 
 // Styles
 import '../styles/globals.css';
@@ -13,11 +13,27 @@ export const Context = createContext();
 export default function MyApp({ Component, pageProps }) {
 
   // Set up initial state
-  const [introMessage, setIntroMessage] = useState(true);
-  const [deleteMessage, setDeleteMessage] = useState(false);
+  const initialState = {
+    introMessage: true,
+    deleteMessage: false
+  }
+
+  // Set up useReducer and reducer function
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  function reducer(state, action) {
+    switch(action.type) {
+      case 'hideIntroMsg':
+        return {...state, introMessage: false}
+      case 'toggleDltMsg':
+        return {...state, deleteMessage: !state.deleteMessage}
+      default:
+        return state
+    }
+  }
 
   return (
-    <Context.Provider value={{ introMessage, setIntroMessage, deleteMessage, setDeleteMessage }}>
+    <Context.Provider value={{ state, dispatch }}>
       <Head>
         <meta charSet='utf-8' />
         <meta name="description" content="Flashcard app" />

@@ -16,11 +16,11 @@ import { tempCardList } from '../tempCardList';
 export default function Sidebar() {
 
     // Get state from Context
-    const { setDeleteMessage } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     // Opens delete message 
     function openDltMsg() {
-        setDeleteMessage(true);
+        dispatch({type: 'toggleDltMsg'})
     }
 
     // Mapping through temporary card list to create Question component

@@ -13,12 +13,12 @@ import { Context } from '../pages/_app.js';
 export default function Home() {
 
   // Get state from Context
-  const { introMessage, deleteMessage } = useContext(Context);
+  const { state } = useContext(Context);
 
   return (
     <div>
-      {introMessage && <IntroMessage />}
-      {deleteMessage && <DeleteMessage />}
+      {state.introMessage && <IntroMessage />}
+      {state.deleteMessage && <DeleteMessage />}
       <Header />
       <MainContainer />
     </div>

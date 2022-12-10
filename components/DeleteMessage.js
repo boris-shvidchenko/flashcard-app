@@ -10,11 +10,11 @@ import { Context } from '../pages/_app.js';
 export default function DeleteMessage() {
 
     // Get state from Context
-    const { setDeleteMessage } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     // Closes delete message
     function closeDltMsg() {
-        setDeleteMessage(false);
+        dispatch({type: 'toggleDltMsg'})
     }
 
     return (
