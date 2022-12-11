@@ -20,12 +20,12 @@ export default function Sidebar() {
         if (state?.cards?.length !== 0) dispatch({type: 'toggleDltMsg'});
     }
 
-    // Opens add card message
+    // Opens add card message, if no cards are present in card list state, return the showCard state to default
     function toggleAddCardMsg() {
+        if (state?.cards?.length === 0) dispatch({type: 'showCard', showCard: {}})
         dispatch({type: 'toggleAddCardMsg'})
     }
     
-
     // Mapping through temporary card list to create Question component
     const questionList = state.cards.map((q) => {
         return (
