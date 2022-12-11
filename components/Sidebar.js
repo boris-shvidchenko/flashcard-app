@@ -48,14 +48,14 @@ export default function Sidebar() {
         state.cards.map((q) => <Question question={q.question} key={q.id} id={q.id}/>)
 
     return (
-        <div className='w-64 h-[calc(100vh-4rem)] border-r border-gray-400'>
+        <div className='sm:w-[12.6rem] md:w-64 h-[calc(100vh-4rem)] border-r border-gray-400'>
 
             <section onClick={toggleAddCardMsg} className='sidebar-section border-b'>
                 <p>Add Card</p>
                 <PlusCircleIcon className='w-6' />
             </section>
 
-            <section onClick={sortCards} className='flex space-x-1 pl-[6.6rem] py-1 cursor-pointer text-sm border-b border-gray-400'>
+            <section onClick={sortCards} className='flex space-x-1 pl-[4.7rem] md:pl-[6.6rem] py-1 cursor-pointer text-sm border-b border-gray-400'>
                 <p>Sort</p>
                 <ChevronUpDownIcon className='w-5' />
             </section>

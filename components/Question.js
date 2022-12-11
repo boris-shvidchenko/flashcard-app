@@ -26,12 +26,13 @@ export default function Question({ question, id }) {
         if (state.showAnswer) dispatch({ type:'showAnswer', showAnswer: false});
         const tempCard = state.cards.filter((card) => card.id === id);
         dispatch({type: 'showCard', showCard: tempCard[0]})
+        dispatch({type: 'showMobileCardsArray'})
     }
 
     return(
         <div className='flex border-b border-gray-300 justify-evenly p-2'>
-            <p onClick={showCard} className='truncate w-40 cursor-pointer'>{question}</p>
-            <XMarkIcon onClick={dltOneCard} className='w-6 text-red-600 cursor-pointer' />
+            <p onClick={showCard} className='px-4 sm:pl-4 truncate w-32 md:w-40 cursor-pointer'>{question}</p>
+            <XMarkIcon onClick={dltOneCard} className='mr-4 md:mr-0 w-6 text-red-600 cursor-pointer' />
         </div>
     )
 }

@@ -50,7 +50,6 @@ export default function AddCardMessage() {
                     <button type='submit' className='msg-btn mx-auto mt-3'>Create Card</button>
                 </form>
             </div>
-
         </div>
     )
 }
