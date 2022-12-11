@@ -2,7 +2,7 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // Hooks
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // Context
 import { Context } from '../pages/_app.js';
@@ -12,18 +12,40 @@ export default function EditCardMessage() {
     // Get state from Context
     const { state, dispatch } = useContext(Context);
 
-    // Close edit window
+    // Obtain the current card
+    const currentCard = Object.keys(state?.showCard).length === 0 ? state?.cards[0] : state.showCard;
+    
+    // Updates the new card state and closes the edit window
     function closeEditWindow() {
+        dispatch({ type: 'updateNewCard', newCard: {question: '', answer: '', id: ''}})
         dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage})
     }
-
-    const tempCard = state?.cards.filter((card) => card.id === state.showCard.id)
-    console.log(tempCard)
     
-    function test(e) {
+    // Once per render,update the new card state to the current card
+    useEffect(() => {
+        dispatch({ type: 'updateNewCard', newCard: {question: currentCard.question, answer: currentCard.answer, id: currentCard.id}})
+    }, [])
+    
+    // Edits the selected card by updating the new card state
+    function editCard(e) {
+        dispatch({ type: 'updateNewCard', newCard: {...state.newCard, [e.target.name]: e.target.value, id: currentCard.id}})
+    }
+
+    // Saves the edit by updating the card and show card state. Then runs the closeEditWindow function.
+    function saveEdit(e) {
         e.preventDefault();
-        // dispatch({ type: 'updateNewCard', newCard: {...state.newCard, [e.target.name]: e.target.value, id: nanoid()}})
-        // const tempCard = state?.cards.filter((card) => card.id === state.showCard.id)
+        let tempCardArray = [];
+        for (let card of state?.cards) {
+            if (card.id === state?.newCard.id) {
+                tempCardArray.push(state?.newCard);
+            } else {
+                tempCardArray.push(card);
+            }
+        }
+        dispatch({type: 'updateCards', cards: tempCardArray})
+        const tempCard = tempCardArray.filter((card) => card.id === state.newCard.id);
+        dispatch({type: 'showCard', showCard: tempCard[0]})
+        closeEditWindow();
     }
 
     return (
@@ -31,13 +53,13 @@ export default function EditCardMessage() {
             <div className='relative bg-white rounded-sm w-96 h-64 mt-32 p-10 pt-4 text-center'>
                 <XMarkIcon onClick={closeEditWindow} className='w-6 absolute top-2 right-2 cursor-pointer' />
                 <h1 className='mb-3 font-semibold text-lg'>Edit Card</h1>
-                <form method='post' className='flex flex-col'>
+                <form onSubmit={saveEdit} method='post' className='flex flex-col'>
 
                     <label htmlFor='question'>Question</label>
-                    <input onChange={(e) => test(e)} value={tempCard.question} className='border border-black my-2' id='question' name='question' type='text' />
+                    <input onChange={(e) => editCard(e)} value={state.newCard.question} className='border border-black my-2' id='question' name='question' type='text' />
 
                     <label htmlFor='answer'>Answer</label>
-                    <input onChange={(e) => test(e)} value={tempCard.answer} className='border border-black my-2' id='answer' name='answer' type='text' />
+                    <input onChange={(e) => editCard(e)} value={state.newCard.answer} className='border border-black my-2' id='answer' name='answer' type='text' />
 
                     <button type='submit' className='msg-btn mx-auto mt-3'>Save Edit</button>
                 </form>
