@@ -17,9 +17,10 @@ export default function DeleteMessage() {
         dispatch({type: 'toggleDltMsg'})
     }
 
-    // Deletes all cards, returns showCard state to default value,closes delete message
+    // Deletes all cards, returns showCard and sortedCards state to default value, closes delete message
     function dltAllCards() {
         dispatch({type: 'updateCards', cards: []});
+        dispatch({type: 'updateSortedCards', sortedCards: []})
         dispatch({type: 'showCard', showCard: {}});
         closeDltMsg();
     }

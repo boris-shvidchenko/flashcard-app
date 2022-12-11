@@ -19,8 +19,10 @@ export default function MyApp({ Component, pageProps }) {
     addCardMessage: false,
     newCard: {question: '', answer: '', id: ''},
     cards: [],
+    sortedCards: [],
     showAnswer: false,
     showCard: {},
+    showSortedCards: false,
     editCardMessage: false
   }
 
@@ -39,10 +41,14 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, newCard: action.newCard}
       case 'updateCards':
         return {...state, cards: action.cards}
+      case 'updateSortedCards':
+        return {...state, sortedCards: action.sortedCards}
       case 'showAnswer':
         return {...state, showAnswer: !state.showAnswer}
       case 'showCard':
         return {...state, showCard: action.showCard}
+      case 'showSortedCards':
+        return {...state, showSortedCards: !state.showSortedCards}
       case 'toggleEditCardMsg':
         return {...state, editCardMessage: action.editCardMessage}
       default:

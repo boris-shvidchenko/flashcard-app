@@ -12,10 +12,12 @@ export default function Question({ question, id }) {
     // Get state from Context
     const { state, dispatch } = useContext(Context);
 
-    // Delete one card from the card list, updates showCard state (otherwise the old, deleted, card will still be shown)
+    // Delete one card from the card list, updates showCard and sortedCards state (otherwise the old, deleted, card will still be shown)
     function dltOneCard() {
         let tempCardArray = state.cards.filter((card) => card.id !== id);
+        let tempSortedCardArray = state.sortedCards.filter((card) => card.id !== id);
         dispatch({type:'updateCards', cards: tempCardArray});
+        dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
         dispatch({type: 'showCard', showCard: tempCardArray[0]})
     }
 
