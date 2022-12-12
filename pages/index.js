@@ -19,7 +19,7 @@ export default function Home() {
   const { state } = useContext(Context);
 
   return (
-    <div>
+    <>
       {state.introMessage && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
       {state.addCardMessage && <AddCardMessage />}
@@ -27,6 +27,6 @@ export default function Home() {
       {state.showMobileCardsArray && <MobileCardsArray />}
       <Header />
       <MainContainer />
-    </div>
+    </>
   )
 }

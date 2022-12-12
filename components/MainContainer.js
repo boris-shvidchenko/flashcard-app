@@ -39,7 +39,7 @@ export default function MainContainer() {
             </section>
 
             {/* Mobile View */}
-            <div className='flex flex-col'>
+            <div className='flex flex-col sm:hidden'>
                 <CardContainer />
 
                 <section className='flex h-16'>
