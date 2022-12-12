@@ -2,7 +2,7 @@
 import Head from 'next/head';
 
 // Hooks
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer, useEffect } from 'react';
 
 // Styles
 import '../styles/globals.css';

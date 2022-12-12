@@ -16,7 +16,7 @@ export default function Question({ question, id }) {
     function dltOneCard() {
         let tempCardArray = state.cards.filter((card) => card.id !== id);
         let tempSortedCardArray = state.sortedCards.filter((card) => card.id !== id);
-        dispatch({type:'updateCards', cards: tempCardArray});
+        dispatch({type: 'updateCards', cards: tempCardArray});
         dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
         dispatch({type: 'showCard', showCard: tempCardArray[0]})
     }
@@ -26,7 +26,7 @@ export default function Question({ question, id }) {
         if (state.showAnswer) dispatch({ type:'showAnswer', showAnswer: false});
         const tempCard = state.cards.filter((card) => card.id === id);
         dispatch({type: 'showCard', showCard: tempCard[0]})
-        dispatch({type: 'showMobileCardsArray'})
+        if (state.showMobileCardsArray) dispatch({type: 'showMobileCardsArray'});
     }
 
     return(
