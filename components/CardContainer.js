@@ -13,7 +13,7 @@ export default function CardContainer() {
     const { state, dispatch } = useContext(Context);
 
     return (
-        <div className='bg-orange-400 sm:bg-red-500 md:bg-blue-200 w-screen sm:w-[calc(100vw-12.6rem)] md:w-[calc(100vw-16rem)] h-full'>
+        <div className='w-screen sm:w-[calc(100vw-12.6rem)] md:w-[calc(100vw-16rem)] h-full'>
             {state?.cards?.length !== 0 && <Card />}
         </div>
     )
