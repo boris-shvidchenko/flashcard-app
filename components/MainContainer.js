@@ -43,11 +43,11 @@ export default function MainContainer() {
             <div className='flex flex-col sm:hidden'>
                 <CardContainer />
                 <section className='flex h-16 z-20 bg-white border-t border-gray-400'>
-                    <div onClick={openMobileCardsModal} className='flex items-center justify-center space-x-3 px-10 cursor-pointer border-r border-gray-400 w-full'>
+                    <div onClick={openMobileCardsModal} className='flex items-center justify-center space-x-3 px-10 cursor-pointer border-r border-gray-400 w-full select-none'>
                         <p>View Cards</p>
                         <Bars3Icon className='w-6' />
                     </div>
-                    <div onClick={toggleAddCardMsg} className='flex items-center justify-center space-x-3 px-10 cursor-pointer w-full'>
+                    <div onClick={toggleAddCardMsg} className='flex items-center justify-center space-x-3 px-10 cursor-pointer w-full select-none'>
                         <p>Add Card</p>
                         <PlusCircleIcon className='w-6' />
                     </div>

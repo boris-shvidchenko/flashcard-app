@@ -48,27 +48,20 @@ export default function MobileCardsArray() {
 
     return(
         <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-20'>
-
             <div className='relative bg-white rounded-sm w-96 h-[31.25rem] mt-32 p-10 pt-4 text-center'>
-
                 <XMarkIcon onClick={closeMobileCardsModal} className='w-6 absolute top-2 right-2 cursor-pointer' />
-
                 <section className='my-7 mx-2 h-[23rem] overflow-y-scroll scroll'>
                     {questionList}
                 </section>
-
                 <section className='flex border-t border-gray-400'>
-
-                    <div onClick={openDltMsg} className='flex space-x-3 py-3 cursor-pointer w-full justify-center border-r border-gray-400'>
+                    <div onClick={openDltMsg} className='flex space-x-3 py-3 cursor-pointer w-full justify-center border-r border-gray-400 select-none'>
                         <p>Delete All</p>
                         <TrashIcon className='w-6' />
                     </div>
-
-                    <div onClick={sortCards} className='flex space-x-3 py-3 cursor-pointer w-full justify-center'>
+                    <div onClick={sortCards} className='flex space-x-3 py-3 cursor-pointer w-full justify-center select-none'>
                         <p>Sort</p>
                         <ChevronUpDownIcon className='w-6' />
                     </div>
-
                 </section>
 
             </div>

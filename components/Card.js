@@ -45,7 +45,7 @@ export default function Card() {
                 <button onClick={openEditWindow} className='msg-btn w-36'>Edit Card</button>
             </section> 
 
-            <section onClick={randomizeCard} className='cursor-pointer border border-black flex justify-center p-1 w-40 space-x-3'>
+            <section onClick={randomizeCard} className='cursor-pointer border border-black flex justify-center p-1 w-40 space-x-3 select-none'>
                 <p>Random Card</p>
                 <ArrowPathRoundedSquareIcon className='w-6' />
             </section>   
