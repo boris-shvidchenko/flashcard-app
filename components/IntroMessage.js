@@ -21,9 +21,10 @@ export default function IntroMessage() {
         dispatch({type: 'hideIntroMsg'})
     }
 
-    // Open login window for Google. Log error if user closes the window without logging in
+    // Open login window for Google and update userLoggedIn state to true. Log error if user closes the window without logging in
     function logIn() {
         signInWithPopup(auth, provider).catch(() => console.log('User closed the login window without logging in.'))
+        dispatch({type:'toggleLoggedIn', userLoggedIn: true})
         closeIntroMsg();
     }
 

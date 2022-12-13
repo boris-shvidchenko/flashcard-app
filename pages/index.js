@@ -22,7 +22,6 @@ export default function Home() {
   return (
     <>
       {(state.loading) && <Loading />}
-
       {(state.introMessage && !state.userLoggedIn) && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
       {state.addCardMessage && <AddCardMessage />}

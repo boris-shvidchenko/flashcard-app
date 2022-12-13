@@ -32,7 +32,8 @@ export default function MyApp({ Component, pageProps }) {
     randomize: false,
     randomCard: {},
     userLoggedIn: false,
-    loading: false
+    loading: false,
+    profilePic: ''
   }
   
   // Set up useReducer and reducer function
@@ -70,6 +71,8 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, userLoggedIn: action.userLoggedIn}
       case 'toggleLoading':
         return {...state, loading: action.loading}
+      case 'updateProfilePic':
+        return {...state, profilePic: action.profilePic}
       default:
         return state
       }
@@ -77,6 +80,15 @@ export default function MyApp({ Component, pageProps }) {
   
   // Obtain the user and loading state
   const [user, loading] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user) {
+      // console.log(user)
+      dispatch({type: 'updateProfilePic', profilePic: user.photoURL})
+      
+      // db.collection('users').doc(user.uid).set({photoURL: user.photoURL}, { merge: true});
+    }
+  }, [user])
   
   // Everytime loading changes, if the user is logged in change userLoggedIn state to true. This will prevent the intro message from opening on refresh. Also update the loading state to display loading component on refresh.
   useEffect(() => {

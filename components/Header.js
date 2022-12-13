@@ -17,18 +17,20 @@ export default function Header() {
     // Get state from Context
     const { state, dispatch } = useContext(Context);
 
-    // Open login window for Google. Log error if user closes the window without logging in
+    // Open login window for Google. If user is logged in, logout and update profilePic state to remove profile pic. Log error if user closes the window without logging in
     function logIn() {
         if (!state.userLoggedIn) {
             signInWithPopup(auth, provider)
                 .then(() => console.log('User logged in'))
                 .catch(() => console.log('User closed the login window without logging in.'));
+            dispatch({type:'toggleLoggedIn', userLoggedIn: true})
         }
         if (state.userLoggedIn) {
             signOut(auth)
                 .then(() => dispatch({type:'toggleLoggedIn', userLoggedIn: false}))
                 .then(() => console.log('User logged out'))
                 .catch((err) => console.log(err));
+            dispatch({type: 'updateProfilePic', profilePic: ''})
         }
     }
 
@@ -41,7 +43,7 @@ export default function Header() {
             </section>
             <section onClick={logIn} className={`${state.userLoggedIn ? 'flex' : 'hidden'} items-center space-x-3 cursor-pointer`}>
                 <p>Logout</p>
-                <UserCircleIcon className='w-8' />
+                {state.profilePic === '' ? <UserCircleIcon className='w-8' /> : <img src={state.profilePic} className='w-7 h-7 rounded-full' />}
             </section>
         </header>
     )
