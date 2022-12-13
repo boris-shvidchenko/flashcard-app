@@ -19,7 +19,7 @@ export default function MainContainer() {
     // Opens add card message, if no cards are present in card list state, return the showCard state to default only if showMobileCardsArray is false.
     function toggleAddCardMsg() {
         if (state?.cards?.length === 0) dispatch({type: 'showCard', showCard: {}})
-        if (!state?.showMobileCardsArray) dispatch({type: 'toggleAddCardMsg'})
+        if (!state?.showMobileCardsArray && !state?.introMessage) dispatch({type: 'toggleAddCardMsg'})
     }
 
     // If showMobileCardsArrauy is true, return it to false. Opens mobile card array modal if length of cards array is greater than 0 and showMobileCardsArray is false.
