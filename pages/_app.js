@@ -1,6 +1,7 @@
 // Components
 import Head from 'next/head';
 
+// Firebase
 import { auth, db } from '../firebase';
 
 // Hooks
@@ -14,8 +15,6 @@ import '../styles/globals.css';
 export const Context = createContext();
 
 export default function MyApp({ Component, pageProps }) {
-
-  const [user] = useAuthState(auth);
 
   // Set up initial state
   const initialState = {
@@ -31,12 +30,13 @@ export default function MyApp({ Component, pageProps }) {
     editCardMessage: false,
     showMobileCardsArray: false,
     randomize: false,
-    randomCard: {}
+    randomCard: {},
+    userLoggedIn: false
   }
-
+  
   // Set up useReducer and reducer function
   const [state, dispatch] = useReducer(reducer, initialState);
-
+  
   function reducer(state, action) {
     switch(action.type) {
       case 'hideIntroMsg':
@@ -65,13 +65,24 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, randomize: action.randomize}
       case 'storeRandomCard':
         return {...state, randomCard: action.randomCard}
+      case 'toggleLoggedIn':
+        return {...state, userLoggedIn: action.userLoggedIn}
       default:
         return state
-    }
+      }
   }
+  
+  // Obtain the user and loading state
+  const [user, loading] = useAuthState(auth);
 
+  // Everytime the user logs in/logs out, if the user is logged in change userLoggedIN state to true. This will prevent the intro message from opening on refresh
+  useEffect(() => {
+    if (user) dispatch({type:'toggleLoggedIn', userLoggedIn: true})
+  }, [user])
+  
   // Testing purposes
   console.log(state);
+  // console.log(user)
 
   return (
     <Context.Provider value={{ state, dispatch }}>

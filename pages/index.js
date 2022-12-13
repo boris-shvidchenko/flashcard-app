@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <>
-      {state.introMessage && <IntroMessage />}
+      {(state.introMessage && !state.userLoggedIn) && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
       {state.addCardMessage && <AddCardMessage />}
       {state.editCardMessage && <EditCardMessage />}
