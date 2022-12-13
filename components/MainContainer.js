@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import CardContainer from './CardContainer';
 
 // Heroicons
-import { PlusCircleIcon, Bars3Icon } from '@heroicons/react/24/outline';
+import { PlusCircleIcon, Bars3Icon, ArrowPathRoundedSquareIcon } from '@heroicons/react/24/outline';
 
 // Hooks
 import { useContext } from 'react';
@@ -28,6 +28,14 @@ export default function MainContainer() {
         if (state?.cards.length > 0 && !state?.showMobileCardsArray && !state?.addCardMessage) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
     }
 
+    // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use.
+    function randomizeCard() {
+        dispatch({type: 'toggleRandomize', randomize: true});
+        if (state?.cards?.length !== 1) {
+            dispatch({type: 'storeRandomCard', randomCard: state?.cards[Math.floor(Math.random() * state.cards.length)]});
+        }
+    }
+
     return (
         <main className='h-[calc(100vh-4rem)] flex'>
             
@@ -42,6 +50,12 @@ export default function MainContainer() {
             {/* Mobile View */}
             <div className='flex flex-col sm:hidden'>
                 <CardContainer />
+
+                <section onClick={randomizeCard} className='cursor-pointer border border-black flex justify-center p-1 w-40 space-x-3 select-none ml-[63vw] mb-6 mt-1'>
+                    <p>Random Card</p>
+                    <ArrowPathRoundedSquareIcon className='w-6' />
+                </section> 
+
                 <section className='flex h-16 z-20 bg-white border-t border-gray-400'>
                     <div onClick={openMobileCardsModal} className='flex items-center justify-center space-x-3 px-10 cursor-pointer border-r border-gray-400 w-full select-none'>
                         <p>View Cards</p>

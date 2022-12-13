@@ -22,7 +22,7 @@ export default function Card() {
         dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage})
     }
 
-    // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use.
+    // // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use.
     function randomizeCard() {
         dispatch({type: 'toggleRandomize', randomize: true});
         if (state?.cards?.length !== 1) {
@@ -31,7 +31,7 @@ export default function Card() {
     }
 
     return (
-        <div className='bg-white border border-gray-400 w-[26rem] h-[25rem] p-10 mx-auto relative top-20 flex flex-col space-y-8 items-center justify-center rounded-sm'>
+        <div className='bg-white border border-gray-400 w-[26rem] h-[65%] p-10 mx-auto relative top-20 flex flex-col space-y-8 items-center justify-center rounded-sm z-20 overflow-x-hidden scroll'>
             <section className='flex flex-col items-center'>
                 <p className={`${state.showAnswer ? 'hidden' : ''} mb-3`}>Question:</p>
                 <p className={`${state.showAnswer ? 'hidden' : ''} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.randomCard.question : state?.showCard?.question}</p>
@@ -45,7 +45,7 @@ export default function Card() {
                 <button onClick={openEditWindow} className='msg-btn w-36'>Edit Card</button>
             </section> 
 
-            <section onClick={randomizeCard} className='cursor-pointer border border-black flex justify-center p-1 w-40 space-x-3 select-none'>
+            <section onClick={randomizeCard} className='hidden sm:flex cursor-pointer border border-black justify-center p-1 w-40 space-x-3 select-none'>
                 <p>Random Card</p>
                 <ArrowPathRoundedSquareIcon className='w-6' />
             </section>   

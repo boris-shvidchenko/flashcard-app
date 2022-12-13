@@ -40,7 +40,7 @@ export default function AddCardMessage() {
     }
 
     return (
-        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-20'>
+        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
             <div className='relative bg-white rounded-sm w-96 h-64 mt-32 p-10 pt-4 text-center'>
                 <XMarkIcon onClick={toggleAddCardMsg} className='w-6 absolute top-2 right-2 cursor-pointer' />
                 <h1 className='mb-3 font-semibold text-lg'>Add New Card</h1>

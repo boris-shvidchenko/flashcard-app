@@ -29,7 +29,7 @@ export default function DeleteMessage() {
     }
 
     return (
-        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
+        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-40'>
             <div className='relative bg-white rounded-sm w-96 h-40 mt-44 sm:mt-32 p-10 text-center'>
                 <XMarkIcon onClick={closeDltMsg} className='w-6 absolute top-2 right-2 cursor-pointer' />
                 <p>Are you sure you want to delete all of your cards?</p>

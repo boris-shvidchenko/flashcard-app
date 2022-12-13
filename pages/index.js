@@ -16,7 +16,7 @@ import { Context } from '../pages/_app.js';
 export default function Home() {
 
   // Get state from Context
-  const { state } = useContext(Context);
+  const { state, dispatch } = useContext(Context);
 
   return (
     <>
@@ -26,7 +26,7 @@ export default function Home() {
       {state.editCardMessage && <EditCardMessage />}
       {state.showMobileCardsArray && <MobileCardsArray />}
       <Header />
-      <MainContainer />
+      <MainContainer /> 
     </>
   )
 }
