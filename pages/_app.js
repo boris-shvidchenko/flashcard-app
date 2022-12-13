@@ -31,7 +31,8 @@ export default function MyApp({ Component, pageProps }) {
     showMobileCardsArray: false,
     randomize: false,
     randomCard: {},
-    userLoggedIn: false
+    userLoggedIn: false,
+    loading: false
   }
   
   // Set up useReducer and reducer function
@@ -67,6 +68,8 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, randomCard: action.randomCard}
       case 'toggleLoggedIn':
         return {...state, userLoggedIn: action.userLoggedIn}
+      case 'toggleLoading':
+        return {...state, loading: action.loading}
       default:
         return state
       }
@@ -74,9 +77,11 @@ export default function MyApp({ Component, pageProps }) {
   
   // Obtain the user and loading state
   const [user, loading] = useAuthState(auth);
-
-  // Everytime the user logs in/logs out, if the user is logged in change userLoggedIN state to true. This will prevent the intro message from opening on refresh
+  
+  // Everytime the user logs in/logs out, if the user is logged in change userLoggedIn state to true. This will prevent the intro message from opening on refresh. Also update the loading state to display loading component on refresh.
   useEffect(() => {
+    if (loading) dispatch({type:'toggleLoading', loading: true});
+    if (!loading) dispatch({type:'toggleLoading', loading: false});
     if (user) dispatch({type:'toggleLoggedIn', userLoggedIn: true})
   }, [user])
   

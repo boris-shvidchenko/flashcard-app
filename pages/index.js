@@ -6,6 +6,7 @@ import DeleteMessage from '../components/DeleteMessage';
 import AddCardMessage from '../components/AddCardMessage';
 import EditCardMessage from '../components/EditCardMessage';
 import MobileCardsArray from '../components/MobileCardsArray';
+import Loading from '../components/Loading';
 
 // Hooks
 import { useContext } from 'react';
@@ -20,6 +21,7 @@ export default function Home() {
 
   return (
     <>
+      {/* {state.loading && <Loading />} */}
       {(state.introMessage && !state.userLoggedIn) && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
       {state.addCardMessage && <AddCardMessage />}
