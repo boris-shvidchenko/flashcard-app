@@ -16,15 +16,16 @@ export default function MainContainer() {
     // Get state from Context
     const { state, dispatch } = useContext(Context);
 
-    // Opens add card message, if no cards are present in card list state, return the showCard state to default
+    // Opens add card message, if no cards are present in card list state, return the showCard state to default only if showMobileCardsArray is false.
     function toggleAddCardMsg() {
         if (state?.cards?.length === 0) dispatch({type: 'showCard', showCard: {}})
-        dispatch({type: 'toggleAddCardMsg'})
+        if (!state?.showMobileCardsArray) dispatch({type: 'toggleAddCardMsg'})
     }
 
-    // Opens mobile card array modal
+    // If showMobileCardsArrauy is true, return it to false. Opens mobile card array modal if length of cards array is greater than 0 and showMobileCardsArray is false.
     function openMobileCardsModal() {
-        dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
+        if (state.showMobileCardsArray) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
+        if (state?.cards.length > 0 && !state?.showMobileCardsArray && !state?.addCardMessage) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
     }
 
     return (
