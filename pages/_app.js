@@ -1,8 +1,11 @@
 // Components
 import Head from 'next/head';
 
+import { auth, db } from '../firebase';
+
 // Hooks
 import { createContext, useReducer, useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // Styles
 import '../styles/globals.css';
@@ -11,6 +14,8 @@ import '../styles/globals.css';
 export const Context = createContext();
 
 export default function MyApp({ Component, pageProps }) {
+
+  const [user] = useAuthState(auth);
 
   // Set up initial state
   const initialState = {
