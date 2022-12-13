@@ -78,12 +78,12 @@ export default function MyApp({ Component, pageProps }) {
   // Obtain the user and loading state
   const [user, loading] = useAuthState(auth);
   
-  // Everytime the user logs in/logs out, if the user is logged in change userLoggedIn state to true. This will prevent the intro message from opening on refresh. Also update the loading state to display loading component on refresh.
+  // Everytime loading changes, if the user is logged in change userLoggedIn state to true. This will prevent the intro message from opening on refresh. Also update the loading state to display loading component on refresh.
   useEffect(() => {
     if (loading) dispatch({type:'toggleLoading', loading: true});
     if (!loading) dispatch({type:'toggleLoading', loading: false});
     if (user) dispatch({type:'toggleLoggedIn', userLoggedIn: true})
-  }, [user])
+  }, [loading])
   
   // Testing purposes
   console.log(state);

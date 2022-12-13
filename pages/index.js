@@ -9,7 +9,7 @@ import MobileCardsArray from '../components/MobileCardsArray';
 import Loading from '../components/Loading';
 
 // Hooks
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // Context
 import { Context } from '../pages/_app.js';
@@ -21,7 +21,8 @@ export default function Home() {
 
   return (
     <>
-      {/* {state.loading && <Loading />} */}
+      {(state.loading) && <Loading />}
+
       {(state.introMessage && !state.userLoggedIn) && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
       {state.addCardMessage && <AddCardMessage />}
