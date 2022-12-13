@@ -17,12 +17,14 @@ export default function DeleteMessage() {
         dispatch({type: 'toggleDltMsg'})
     }
 
-    // Deletes all cards, returns showCard and sortedCards state to default value, closes delete message
+    // Deletes all cards, returns randomCard, randomize, cards, sortedCards, showCard, and showMobileCardsArray state to default value, closes delete message
     function dltAllCards() {
+        dispatch({type: 'storeRandomCard', randomCard: {}})
+        dispatch({type: 'toggleRandomize', randomize: false});
         dispatch({type: 'updateCards', cards: []});
         dispatch({type: 'updateSortedCards', sortedCards: []})
         dispatch({type: 'showCard', showCard: {}});
-        dispatch({type: 'showMobileCardsArray'})
+        dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
         closeDltMsg();
     }
 
@@ -30,16 +32,12 @@ export default function DeleteMessage() {
         <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
             <div className='relative bg-white rounded-sm w-96 h-40 mt-44 sm:mt-32 p-10 text-center'>
                 <XMarkIcon onClick={closeDltMsg} className='w-6 absolute top-2 right-2 cursor-pointer' />
-
                 <p>Are you sure you want to delete all of your cards?</p>
-
                 <section className='flex items-center mx-auto justify-between px-2 mt-3 text-lg'>
                     <button className='msg-btn' onClick={dltAllCards}>Delete</button>
                     <button className='msg-btn' onClick={closeDltMsg}>Cancel</button>
                 </section>
-
             </div>
-
         </div>
     )
 }

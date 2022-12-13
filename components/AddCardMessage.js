@@ -21,9 +21,11 @@ export default function AddCardMessage() {
         dispatch({type: 'updateNewCard', newCard: {question: '', answer: '', id: ''}})
     }
 
-    // On submit prevents default, push new data to card array and sorted card state, updates what card to show, closes add card message, and returns newCardData to default value
+    // On submit prevents default, returns randomizes state to false, pushes new data to card array and sorted card state, updates what card to show, closes add card message, and returns newCardData to default value
     function addCard(e) {
         e.preventDefault();
+        dispatch({type: 'toggleRandomize', randomize: false});
+        dispatch({type: 'storeRandomCard', randomCard: {}})
         dispatch({type: 'updateCards', cards: [...state.cards, state.newCard]})
         dispatch({type: 'updateSortedCards', sortedCards: [...state.sortedCards, state.newCard]})
         if (state?.cards?.length === 1) {

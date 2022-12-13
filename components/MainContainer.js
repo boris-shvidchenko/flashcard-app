@@ -24,7 +24,7 @@ export default function MainContainer() {
 
     // Opens mobile card array modal
     function openMobileCardsModal() {
-        dispatch({type: 'showMobileCardsArray'})
+        dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
     }
 
     return (

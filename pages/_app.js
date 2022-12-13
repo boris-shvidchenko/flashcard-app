@@ -24,7 +24,9 @@ export default function MyApp({ Component, pageProps }) {
     showCard: {},
     showSortedCards: false,
     editCardMessage: false,
-    showMobileCardsArray: false
+    showMobileCardsArray: false,
+    randomize: false,
+    randomCard: {}
   }
 
   // Set up useReducer and reducer function
@@ -53,7 +55,11 @@ export default function MyApp({ Component, pageProps }) {
       case 'toggleEditCardMsg':
         return {...state, editCardMessage: action.editCardMessage}
       case 'showMobileCardsArray':
-        return {...state, showMobileCardsArray: !state.showMobileCardsArray}
+        return {...state, showMobileCardsArray: action.showMobileCardsArray}
+      case 'toggleRandomize':
+        return {...state, randomize: action.randomize}
+      case 'storeRandomCard':
+        return {...state, randomCard: action.randomCard}
       default:
         return state
     }

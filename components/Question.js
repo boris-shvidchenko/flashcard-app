@@ -12,18 +12,21 @@ export default function Question({ question, id }) {
     // Get state from Context
     const { state, dispatch } = useContext(Context);
 
-    // Delete one card from the card list, updates showCard and sortedCards state (otherwise the old, deleted, card will still be shown)
+    // Delete one card from the card list, updates showCard and sortedCards state (otherwise the old, deleted, card will still be shown), if cards array is empty then also close the mobile cards array component
     function dltOneCard() {
         let tempCardArray = state.cards.filter((card) => card.id !== id);
         let tempSortedCardArray = state.sortedCards.filter((card) => card.id !== id);
         dispatch({type: 'updateCards', cards: tempCardArray});
         dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
         dispatch({type: 'showCard', showCard: tempCardArray[0]})
+        if (tempCardArray.length === 0) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
     }
 
-    // Changes showAnswer to false so that the answer is hidden for the other cards, then search cards for the card with the same id as selected card (in sidebar) to render to page. 
+    // Changes showAnswer to false so that the answer is hidden for the other cards, toggles randomize state to false, returns randomCard state to false, then search cards for the card with the same id as selected card (in sidebar) to render to page. 
     function showCard() {
         if (state.showAnswer) dispatch({ type:'showAnswer', showAnswer: false});
+        dispatch({type: 'toggleRandomize', randomize: false});
+        dispatch({type: 'storeRandomCard', randomCard: {}})
         const tempCard = state.cards.filter((card) => card.id === id);
         dispatch({type: 'showCard', showCard: tempCard[0]})
         if (state.showMobileCardsArray) dispatch({type: 'showMobileCardsArray'});
