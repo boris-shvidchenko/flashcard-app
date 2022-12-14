@@ -1,6 +1,10 @@
 // Heroicons
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
+// Firebase
+import { auth, db } from '../firebase';
+import { collection, doc, getDocs, deleteDoc  } from "firebase/firestore"; 
+
 // Hooks
 import { useContext } from 'react';
 
@@ -17,7 +21,7 @@ export default function DeleteMessage() {
         dispatch({type: 'toggleDltMsg'})
     }
 
-    // Deletes all cards, returns randomCard, randomize, cards, sortedCards, showCard, and showMobileCardsArray state to default value, closes delete message
+    // Deletes all cards, returns randomCard, randomize, cards, sortedCards, showCard, showMobileCardsArray, and updateDB state to default value, closes delete message. Deletes collection in firebase as well. 
     function dltAllCards() {
         dispatch({type: 'storeRandomCard', randomCard: {}})
         dispatch({type: 'toggleRandomize', randomize: false});
@@ -25,6 +29,10 @@ export default function DeleteMessage() {
         dispatch({type: 'updateSortedCards', sortedCards: []})
         dispatch({type: 'showCard', showCard: {}});
         dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
+
+        
+
+        dispatch({type:'updateDB', updateDB: true})
         closeDltMsg();
     }
 

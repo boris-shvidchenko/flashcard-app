@@ -3,6 +3,7 @@ import Head from 'next/head';
 
 // Firebase
 import { auth, db } from '../firebase';
+import { collection, doc, setDoc, addDoc } from "firebase/firestore"; 
 
 // Hooks
 import { createContext, useReducer, useEffect } from 'react';
@@ -33,7 +34,8 @@ export default function MyApp({ Component, pageProps }) {
     randomCard: {},
     userLoggedIn: false,
     loading: false,
-    profilePic: ''
+    profilePic: '',
+    updateDB: false,
   }
   
   // Set up useReducer and reducer function
@@ -73,6 +75,8 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, loading: action.loading}
       case 'updateProfilePic':
         return {...state, profilePic: action.profilePic}
+      case 'updateDB':
+        return {...state, updateDB: action.updateDB}
       default:
         return state
       }
@@ -81,14 +85,16 @@ export default function MyApp({ Component, pageProps }) {
   // Obtain the user and loading state
   const [user, loading] = useAuthState(auth);
 
+  // Update the profilePic state and update the cards on the firestore database if a user is logged in.
   useEffect(() => {
     if (user) {
-      // console.log(user)
       dispatch({type: 'updateProfilePic', profilePic: user.photoURL})
-      
-      // db.collection('users').doc(user.uid).set({photoURL: user.photoURL}, { merge: true});
+      addDoc(collection(db, user.uid), {Cards: state.cards})
+        .then(() => console.log('Card added to database' ))
+        .catch((error) => console.log(error));
+      dispatch({type:'updateDB', updateDB: false})
     }
-  }, [user])
+  }, [user, state.updateDB])
   
   // Everytime loading changes, if the user is logged in change userLoggedIn state to true. This will prevent the intro message from opening on refresh. Also update the loading state to display loading component on refresh.
   useEffect(() => {

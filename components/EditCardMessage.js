@@ -42,11 +42,12 @@ export default function EditCardMessage() {
         dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
         const tempCard = tempCardArray.filter((card) => card.id === state.newCard.id);
         dispatch({type: 'showCard', showCard: tempCard[0]})
+        dispatch({type:'updateDB', updateDB: true})
         closeEditWindow();
     }
 
     return (
-        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-20'>
+        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
             <div className='relative bg-white rounded-sm w-96 h-64 mt-32 p-10 pt-4 text-center'>
                 <XMarkIcon onClick={closeEditWindow} className='w-6 absolute top-2 right-2 cursor-pointer' />
                 <h1 className='mb-3 font-semibold text-lg'>Edit Card</h1>

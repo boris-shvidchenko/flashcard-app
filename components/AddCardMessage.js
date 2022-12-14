@@ -1,8 +1,13 @@
 // Heroicons
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
+// Firebase
+import { auth, db } from '../firebase';
+import { collection, addDoc } from "firebase/firestore"; 
+
 // Hooks
 import { useContext } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 // Context
 import { Context } from '../pages/_app.js';
@@ -14,6 +19,9 @@ export default function AddCardMessage() {
 
     // Get state from Context
     const { state, dispatch } = useContext(Context);
+
+    // Obtain the user and loading state
+    const [user] = useAuthState(auth);
 
     // Closes add card message and returns newCardData to default value
     function toggleAddCardMsg() {
@@ -32,6 +40,7 @@ export default function AddCardMessage() {
             dispatch({type: 'showCard', showCard: state?.cards[0]})
         } 
         toggleAddCardMsg();
+        dispatch({type:'updateDB', updateDB: true})
     }
 
     // Update newCardData state to add new card info

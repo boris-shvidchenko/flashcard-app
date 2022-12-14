@@ -19,6 +19,7 @@ export default function Question({ question, id }) {
         dispatch({type: 'updateCards', cards: tempCardArray});
         dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
         dispatch({type: 'showCard', showCard: tempCardArray[0]})
+        dispatch({type:'updateDB', updateDB: true})
         if (tempCardArray.length === 0) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
     }
 
