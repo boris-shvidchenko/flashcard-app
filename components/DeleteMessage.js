@@ -1,8 +1,6 @@
 // Heroicons
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-// Firebase
-
 // Hooks
 import { useContext } from 'react';
 
@@ -12,7 +10,7 @@ import { Context } from '../pages/_app.js';
 export default function DeleteMessage() {
 
     // Get state from Context
-    const { state, dispatch } = useContext(Context);
+    const { dispatch } = useContext(Context);
 
     // Closes delete message
     function closeDltMsg() {

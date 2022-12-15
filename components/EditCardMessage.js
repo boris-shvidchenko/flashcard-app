@@ -21,10 +21,6 @@ export default function EditCardMessage() {
         dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage})
     }
     
-    // Once per render, update the new card state to the current card
-    useEffect(() => {
-        dispatch({ type: 'updateNewCard', newCard: {question: currentCard.question, answer: currentCard.answer, id: currentCard.id}})
-    }, [])
     
     // Edits the selected card by updating the new card state
     function editCard(e) {
@@ -45,7 +41,12 @@ export default function EditCardMessage() {
         dispatch({type: 'showCard', showCard: tempCard[0]})
         closeEditWindow();
     }
-
+    
+    // Once per render, update the new card state to the current card
+    useEffect(() => {
+        dispatch({ type: 'updateNewCard', newCard: {question: currentCard.question, answer: currentCard.answer, id: currentCard.id}})
+    }, [])
+    
     return (
         <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
             <div className='relative bg-white rounded-sm w-96 h-64 mt-32 p-10 pt-4 text-center'>
