@@ -29,17 +29,17 @@ export default function AddCardMessage() {
         dispatch({type: 'updateNewCard', newCard: {question: '', answer: '', id: ''}})
     }
 
-    // On submit prevents default, returns randomizes state to false, pushes new data to card array and sorted card state, updates what card to show, closes add card message, and returns newCardData to default value
+    // On submit prevents default, returns randomizes state to false, pushes new data to card array and sorted card state, updates what card to show, closes add card message, and returns newCardData to default value. Reference for sorting array of objects based on property > https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
     function addCard(e) {
         e.preventDefault();
         dispatch({type: 'toggleRandomize', randomize: false});
         dispatch({type: 'storeRandomCard', randomCard: {}})
         dispatch({type: 'updateCards', cards: [...state.cards, state.newCard]})
-        dispatch({type: 'updateSortedCards', sortedCards: [...state.sortedCards, state.newCard]})
+        const newUpdatedCards = [...state.sortedCards, state.newCard].sort((a, b) => (a.question > b.question ? 1 : -1))
+        dispatch({type: 'updateSortedCards', sortedCards: newUpdatedCards})
         if (state?.cards?.length === 1) {
             dispatch({type: 'showCard', showCard: state?.cards[0]})
         } 
-        dispatch({type: 'showCard', showCard: state.newCard})
         toggleAddCardMsg();
     }
 
