@@ -34,8 +34,7 @@ export default function MyApp({ Component, pageProps }) {
     randomCard: {},
     userLoggedIn: false,
     loading: false,
-    profilePic: '',
-    dbCards: null,
+    profilePic: ''
   }
   
   // Set up useReducer and reducer function
@@ -75,8 +74,6 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, loading: action.loading}
       case 'updateProfilePic':
         return {...state, profilePic: action.profilePic}
-      case 'updateDbCards':
-        return {...state, dbCards: action.dbCards}
       default:
         return state
       }
@@ -85,40 +82,33 @@ export default function MyApp({ Component, pageProps }) {
   // Obtain the user and loading state
   const [user, loading] = useAuthState(auth);
 
-
-  // Update the profilePic, 
+  // Access firebase and auth data on user and state.cards change
   useEffect(() => {
+    // If user is logged in
     if (user) {
-
+      // Update profile pic
       dispatch({type: 'updateProfilePic', profilePic: user.photoURL})
 
-      // if (collection = empty && state.dbCads = null) {
-        // add doc
-      //} if else (collection != empty && state.dbCads = null) {
-        // dispatch({type: 'updateDbCards', dbCards: cards in collection})
-      // else {
-        // update dbCards  
-      // }
-
-      if (state.dbCards === null) {
-        addDoc(collection(db, user.uid), {cards: state.cards, addedAt: serverTimestamp()})
-          .then(() => console.log('Cards added to database' ))
-          .catch((error) => console.log(error));
-      } else {
-        // query to always obtain the latest document via addedAt timestamp (this might not be needed if above comment is addressed - test this)
-        updateDoc(doc(db, user.uid, state?.dbCards[0]?.id), {cards: state.cards, addedAt: serverTimestamp()})
-          .then(() => console.log('Database updated'))
-          .catch((error) => console.log(error));
-      }
-
+      // (1) Obtain the documents from firebase, (2) move the existing documents to cards array, (3) if card array is empty (aka no documents exist for user in firebase) then add a new collection and document, (4) if the card array is not empty (aka no documents exist for user in firebase) then update the first document to prevent adding additional data to database, (5) log out any errors to console.
+      let cards = [];
       getDocs(collection(db, user.uid))
         .then((snapshot) => {
-            let cards = [];
-            snapshot.docs.forEach((doc) => {
-              cards.push({ ...doc.data(), id: doc.id })
-            })
-            console.log(cards);
-            dispatch({type: 'updateDbCards', dbCards: cards})
+          snapshot.docs.forEach((doc) => {
+            cards.push({ ...doc.data(), id: doc.id })
+          })
+          // For testing
+          console.log(cards);
+        })
+        .then(() => {
+          if (cards.length === 0) {
+            addDoc(collection(db, user.uid), {cards: state.cards, addedAt: serverTimestamp()})
+              .then(() => console.log('Cards added to database' ))
+              .catch((error) => console.log(error));
+          } else {
+            updateDoc(doc(db, user.uid, cards[0].id), {cards: state.cards, addedAt: serverTimestamp()})
+              .then(() => console.log('Database updated'))
+              .catch((error) => console.log(error));
+          }
         })
         .catch((err) => console.log(err.message))
     }
