@@ -22,11 +22,19 @@ export default function Card() {
         dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage})
     }
 
-    // // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use.
+    // // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use. While loop will continue until a card that isnt already selected is chosen randomly
     function randomizeCard() {
         if (state?.cards?.length > 1) {
             dispatch({type: 'toggleRandomize', randomize: true});
-            dispatch({type: 'storeRandomCard', randomCard: state?.cards[Math.floor(Math.random() * state.cards.length)]});
+            while (true) {
+                let random = state?.cards[Math.floor(Math.random() * state.cards.length)]
+                if (random !== state.showCard) {
+                    dispatch({type: 'storeRandomCard', randomCard: random});
+                    return false;
+                } else {
+                    continue
+                }   
+            }
         }
     }
 
