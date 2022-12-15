@@ -3,7 +3,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // Firebase
 import { auth, db } from '../firebase';
-import { collection, addDoc } from "firebase/firestore"; 
+import { collection, doc, setDoc, addDoc, getDocs, serverTimestamp } from "firebase/firestore"; 
 
 // Hooks
 import { useContext } from 'react';
@@ -40,7 +40,6 @@ export default function AddCardMessage() {
             dispatch({type: 'showCard', showCard: state?.cards[0]})
         } 
         toggleAddCardMsg();
-        dispatch({type:'updateDB', updateDB: true})
     }
 
     // Update newCardData state to add new card info

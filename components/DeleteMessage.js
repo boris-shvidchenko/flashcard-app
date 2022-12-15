@@ -2,8 +2,6 @@
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 // Firebase
-import { auth, db } from '../firebase';
-import { collection, doc, getDocs, deleteDoc  } from "firebase/firestore"; 
 
 // Hooks
 import { useContext } from 'react';
@@ -29,10 +27,6 @@ export default function DeleteMessage() {
         dispatch({type: 'updateSortedCards', sortedCards: []})
         dispatch({type: 'showCard', showCard: {}});
         dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
-
-        
-
-        dispatch({type:'updateDB', updateDB: true})
         closeDltMsg();
     }
 

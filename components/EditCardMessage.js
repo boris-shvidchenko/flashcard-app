@@ -42,7 +42,6 @@ export default function EditCardMessage() {
         dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
         const tempCard = tempCardArray.filter((card) => card.id === state.newCard.id);
         dispatch({type: 'showCard', showCard: tempCard[0]})
-        dispatch({type:'updateDB', updateDB: true})
         closeEditWindow();
     }
 

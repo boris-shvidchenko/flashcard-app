@@ -1,22 +1,22 @@
 // Firebase functions
 import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 // Web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAZfkoYh5d1QZ_noFQDmB6AIIzUfz30uss",
-    authDomain: "flashcard-app-c25c5.firebaseapp.com",
-    projectId: "flashcard-app-c25c5",
-    storageBucket: "flashcard-app-c25c5.appspot.com",
-    messagingSenderId: "968687086119",
-    appId: "1:968687086119:web:cfbf257630b033ba247c02"
-};
+    apiKey: "AIzaSyAuH_EmfmqVW9dnnU8TzUyjKIN8EURUTOo",
+    authDomain: "flashcards-5e43e.firebaseapp.com",
+    projectId: "flashcards-5e43e",
+    storageBucket: "flashcards-5e43e.appspot.com",
+    messagingSenderId: "346293108095",
+    appId: "1:346293108095:web:b35781ccc79fb33ff16e4a"
+  };
 
 // Initialize Firebase if not already initialized, otherwise use the already created app 
 const app = initializeApp(firebaseConfig);
 
-// Obtain the database, authentication, and provider
+// Obtain the database, authentication and provider
 const db = getFirestore(app)
 const auth = getAuth(app)
 const provider = new GoogleAuthProvider();
