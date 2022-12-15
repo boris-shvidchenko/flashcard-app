@@ -47,9 +47,9 @@ export default function Card() {
         <div className='bg-white border border-gray-400 w-[26rem] h-[65%] p-10 mx-auto relative top-20 flex flex-col space-y-8 items-center justify-center rounded-sm z-20 overflow-x-hidden scroll'>
             <section className='flex flex-col items-center'>
                 <p className={`${state.showAnswer ? 'hidden' : ''} mb-3`}>Question:</p>
-                <p className={`${state.showAnswer ? 'hidden' : ''} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.showCard?.question : state?.showCard?.question}</p>
+                <p className={`${state.showAnswer ? 'hidden' : ''} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.showCard?.question : Object.keys(state.showCard).length === 0 ? state?.cards[0].question : state?.showCard?.question}</p>
                 <p className={`${state.showAnswer ? '' : 'hidden'} mb-3`}>Answer:</p>
-                <p className={`${state.showAnswer ? '' : 'hidden'} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].answer : state?.randomize ? state?.showCard?.answer : state?.showCard?.answer}</p>
+                <p className={`${state.showAnswer ? '' : 'hidden'} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].answer : state?.randomize ? state?.showCard?.answer : Object.keys(state.showCard).length === 0 ? state?.cards[0].answer : state?.showCard?.answer}</p>
             </section>
 
             <section className='text-lg w-80 justify-between flex'>
