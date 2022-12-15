@@ -28,12 +28,12 @@ export default function MobileCardsArray() {
     // Sorts cards
     function sortCards() {
         if (state?.cards.length !== 0) {
-            const cardQuestions = state.cards.map((card) => card.question)
+            const cardQuestions = state.cards.map((card) => card.id)
             cardQuestions.sort();
             let tempSortedCards = [];
             for (let q of cardQuestions) {
                 for (let c of state?.cards) {
-                    if (c.question === q) tempSortedCards.push(c)
+                    if (c.id === q) tempSortedCards.push(c)
                     }
                 }
             dispatch({type: 'updateSortedCards', sortedCards: tempSortedCards})
