@@ -20,6 +20,7 @@ export default function Header() {
     // Open login window for Google. If user is logged in, logout and update profilePic state to remove profile pic. Log error if user closes the window without logging in
     function logIn() {
         if (!state.userLoggedIn) {
+            dispatch({ type: 'updateCards', cards: []})
             signInWithPopup(auth, provider)
                 .then(() => console.log('User logged in'))
                 .catch(() => console.log('User closed the login window without logging in.'));

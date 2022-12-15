@@ -2,7 +2,7 @@
 import { ArrowPathRoundedSquareIcon } from '@heroicons/react/24/outline';
 
 // Hooks
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // Context
 import { Context } from '../pages/_app.js';
@@ -24,19 +24,24 @@ export default function Card() {
 
     // // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use.
     function randomizeCard() {
-        dispatch({type: 'toggleRandomize', randomize: true});
-        if (state?.cards?.length !== 1) {
+        if (state?.cards?.length > 1) {
+            dispatch({type: 'toggleRandomize', randomize: true});
             dispatch({type: 'storeRandomCard', randomCard: state?.cards[Math.floor(Math.random() * state.cards.length)]});
         }
     }
+
+    // On random card state change, if the random card obj is not empty update the show card state
+    useEffect(() => {
+        if (Object.keys(state.randomCard).length !== 0 ) dispatch({type: 'showCard', showCard: state.randomCard})
+    }, [state.randomCard])
 
     return (
         <div className='bg-white border border-gray-400 w-[26rem] h-[65%] p-10 mx-auto relative top-20 flex flex-col space-y-8 items-center justify-center rounded-sm z-20 overflow-x-hidden scroll'>
             <section className='flex flex-col items-center'>
                 <p className={`${state.showAnswer ? 'hidden' : ''} mb-3`}>Question:</p>
-                <p className={`${state.showAnswer ? 'hidden' : ''} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.randomCard.question : state?.showCard?.question}</p>
+                <p className={`${state.showAnswer ? 'hidden' : ''} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.showCard?.question : state?.showCard?.question}</p>
                 <p className={`${state.showAnswer ? '' : 'hidden'} mb-3`}>Answer:</p>
-                <p className={`${state.showAnswer ? '' : 'hidden'} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].answer : state?.randomize ? state?.randomCard.answer : state?.showCard?.answer}</p>
+                <p className={`${state.showAnswer ? '' : 'hidden'} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].answer : state?.randomize ? state?.showCard?.answer : state?.showCard?.answer}</p>
             </section>
 
             <section className='text-lg w-80 justify-between flex'>

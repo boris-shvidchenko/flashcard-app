@@ -82,6 +82,21 @@ export default function MyApp({ Component, pageProps }) {
   // Obtain the user and loading state
   const [user, loading] = useAuthState(auth);
 
+  // On user change, get the users doc collection from firebase and update the state with those documents to update the UI with the users cards.
+  useEffect(() => {
+    if (user) {
+      getDocs(collection(db, user.uid))
+      .then((snapshot) => {
+        let cards = [];
+        snapshot.docs.forEach((doc) => {
+          cards.push({ ...doc.data(), id: doc.id })
+        })
+        dispatch({type: 'updateCards', cards: cards[0].cards})
+      })
+      .catch((err) => console.log(err.message))
+    }
+  }, [user])
+
   // Access firebase and auth data on user and state.cards change
   useEffect(() => {
     // If user is logged in

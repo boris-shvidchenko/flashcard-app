@@ -39,6 +39,7 @@ export default function AddCardMessage() {
         if (state?.cards?.length === 1) {
             dispatch({type: 'showCard', showCard: state?.cards[0]})
         } 
+        dispatch({type: 'showCard', showCard: state.newCard})
         toggleAddCardMsg();
     }
 

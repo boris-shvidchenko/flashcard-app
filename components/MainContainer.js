@@ -6,7 +6,7 @@ import CardContainer from './CardContainer';
 import { PlusCircleIcon, Bars3Icon, ArrowPathRoundedSquareIcon } from '@heroicons/react/24/outline';
 
 // Hooks
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 // Context
 import { Context } from '../pages/_app.js';
@@ -28,13 +28,18 @@ export default function MainContainer() {
         if (state?.cards.length > 0 && !state?.showMobileCardsArray && !state?.addCardMessage) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
     }
 
-    // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use.
+    // Switch randomize state to true to allow random card to be selected, if cards array is greater than 1 then select a random card from array and store it in random card state for use.
     function randomizeCard() {
-        dispatch({type: 'toggleRandomize', randomize: true});
-        if (state?.cards?.length !== 1) {
+        if (state?.cards?.length > 1) {
+            dispatch({type: 'toggleRandomize', randomize: true});
             dispatch({type: 'storeRandomCard', randomCard: state?.cards[Math.floor(Math.random() * state.cards.length)]});
         }
     }
+
+    // On random card state change, if the random card obj is not empty update the show card state
+    useEffect(() => {
+        if (Object.keys(state.randomCard).length !== 0 ) dispatch({type: 'showCard', showCard: state.randomCard})
+    }, [state.randomCard])
 
     return (
         <main className='h-[calc(100vh-4rem)] flex'>
