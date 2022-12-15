@@ -32,7 +32,15 @@ export default function MainContainer() {
     function randomizeCard() {
         if (state?.cards?.length > 1) {
             dispatch({type: 'toggleRandomize', randomize: true});
-            dispatch({type: 'storeRandomCard', randomCard: state?.cards[Math.floor(Math.random() * state.cards.length)]});
+            while (true) {
+                let random = state?.cards[Math.floor(Math.random() * state.cards.length)]
+                if (random !== state.showCard) {
+                    dispatch({type: 'storeRandomCard', randomCard: random});
+                    return false;
+                } else {
+                    continue
+                }   
+            }
         }
     }
 
