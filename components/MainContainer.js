@@ -65,7 +65,7 @@ export default function MainContainer() {
             <div className='flex flex-col sm:hidden bg-[#f0f2ed]'>
                 <CardContainer />
 
-                <section onClick={randomizeCard} className='cursor-pointer flex justify-center p-1 w-40 space-x-3 select-none ml-[69vw] mb-6 mt-1 text-gray-700'>
+                <section onClick={randomizeCard} className='cursor-pointer flex justify-center p-1 w-28 space-x-3 select-none ml-[68%] mb-9 text-gray-700 text-lg'>
                     <p className='w-14 text-center hover:font-semibold'>Shuffle</p>
                     <ArrowPathRoundedSquareIcon className='w-6' />
                 </section> 

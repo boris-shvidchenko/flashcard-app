@@ -39,7 +39,7 @@ export default function Header() {
     }
 
     return (
-        <header className='bg-[#98c1d9] h-16 border-gray-400 flex items-center justify-between px-10 z-30 drop-shadow-md'>
+        <header className='bg-[#98c1d9] h-16 flex items-center justify-between px-10 z-30 drop-shadow-md'>
             <section className='flex items-center space-x-3'>
                 <Image src='/favicon.png' width={33} height={33} alt='App logo' />
                 <h1 className='text-xl'>Flashcards</h1>
