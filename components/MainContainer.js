@@ -28,10 +28,11 @@ export default function MainContainer() {
         if (state?.cards.length > 0 && !state?.showMobileCardsArray && !state?.addCardMessage) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
     }
 
-    // Switch randomize state to true to allow random card to be selected, if cards array is greater than 1 then select a random card from array and store it in random card state for use.
+    // Switch randomize state to true to allow random card to be selected, if cards array is greater than 1 then select a random card from array and store it in random card state for use. Change show answer state to false if it is true
     function randomizeCard() {
         if (state?.cards?.length > 1) {
             dispatch({type: 'toggleRandomize', randomize: true});
+            if (state.showAnswer) dispatch({type: 'showAnswer', showAnswer: false});
             while (true) {
                 let random = state?.cards[Math.floor(Math.random() * state.cards.length)]
                 if (random !== state.showCard) {
@@ -53,29 +54,29 @@ export default function MainContainer() {
         <main className='h-[calc(100vh-4rem)] flex'>
             
             {/* Desktop View */}
-            <section className='hidden sm:block'>
+            <section className='desktop-components'>
                 <Sidebar />
             </section>
-            <section className='hidden sm:block'>
+            <section className='desktop-components'>
                 <CardContainer />
             </section>
 
             {/* Mobile View */}
-            <div className='flex flex-col sm:hidden'>
+            <div className='flex flex-col sm:hidden bg-[#f0f2ed]'>
                 <CardContainer />
 
-                <section onClick={randomizeCard} className='cursor-pointer border border-black flex justify-center p-1 w-40 space-x-3 select-none ml-[63vw] mb-6 mt-1'>
-                    <p>Random Card</p>
+                <section onClick={randomizeCard} className='cursor-pointer flex justify-center p-1 w-40 space-x-3 select-none ml-[69vw] mb-6 mt-1 text-gray-700'>
+                    <p className='w-14 text-center hover:font-semibold'>Shuffle</p>
                     <ArrowPathRoundedSquareIcon className='w-6' />
                 </section> 
 
-                <section className='flex h-16 z-20 bg-white border-t border-gray-400'>
-                    <div onClick={openMobileCardsModal} className='flex items-center justify-center space-x-3 px-10 cursor-pointer border-r border-gray-400 w-full select-none'>
-                        <p>View Cards</p>
+                <section className='flex h-16 z-20 bg-[#c3dadb]'>
+                    <div onClick={openMobileCardsModal} className='flex items-center justify-center space-x-3 px-10 cursor-pointer border-r border-gray-400 w-full select-none hover:font-semibold'>
+                        <p className='text-center w-24'>View Cards</p>
                         <Bars3Icon className='w-6' />
                     </div>
-                    <div onClick={toggleAddCardMsg} className='flex items-center justify-center space-x-3 px-10 cursor-pointer w-full select-none'>
-                        <p>Add Card</p>
+                    <div onClick={toggleAddCardMsg} className='flex items-center justify-center space-x-3 px-10 cursor-pointer w-full select-none hover:font-semibold'>
+                        <p className='text-center w-24'>Add Card</p>
                         <PlusCircleIcon className='w-6' />
                     </div>
                 </section>

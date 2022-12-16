@@ -13,7 +13,7 @@ export default function CardContainer() {
     const { state } = useContext(Context);
 
     return (
-        <div className='w-screen sm:w-[calc(100vw-12.6rem)] md:w-[calc(100vw-16rem)] h-full'>
+        <div className='w-screen sm:w-[calc(100vw-12.6rem)] md:w-[calc(100vw-16rem)] h-full bg-[#f0f2ed]'>
             {state?.cards?.length !== 0 && <Card />}
         </div>
     )

@@ -22,10 +22,11 @@ export default function Card() {
         dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage})
     }
 
-    // // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use. While loop will continue until a card that isnt already selected is chosen randomly
+    // // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use. While loop will continue until a card that isnt already selected is chosen randomly. Change show answer state to false if it is true
     function randomizeCard() {
         if (state?.cards?.length > 1) {
             dispatch({type: 'toggleRandomize', randomize: true});
+            if (state.showAnswer) dispatch({type: 'showAnswer', showAnswer: false});
             while (true) {
                 let random = state?.cards[Math.floor(Math.random() * state.cards.length)]
                 if (random !== state.showCard) {
@@ -59,7 +60,7 @@ export default function Card() {
             </section> 
 
             <section onClick={randomizeCard} className='hidden sm:flex cursor-pointer border border-black justify-center p-1 w-40 space-x-3 select-none'>
-                <p>Random Card</p>
+                <p>Shuffle</p>
                 <ArrowPathRoundedSquareIcon className='w-6' />
             </section>   
 
