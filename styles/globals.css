@@ -8,11 +8,19 @@
     }
 
     .sidebar-section {
-        @apply flex items-center space-x-3 pl-12 md:pl-20 h-10 border-gray-400 cursor-pointer
+        @apply flex items-center space-x-2 pl-12 md:pl-16 h-10 border-gray-400 cursor-pointer hover:font-semibold
     }
 
     .msg-btn {
         @apply border border-black px-2 w-32 select-none
+    }
+
+    .header-login {
+        @apply items-center space-x-3 cursor-pointer
+    }
+
+    .header-btn {
+        @apply w-14 text-center hover:font-semibold
     }
 }
 

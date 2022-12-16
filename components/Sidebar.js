@@ -50,22 +50,22 @@ export default function Sidebar() {
     return (
         <div className='sm:w-[12.6rem] md:w-64 h-[calc(100vh-4rem)] border-r border-gray-400'>
 
-            <section onClick={toggleAddCardMsg} className='sidebar-section border-b'>
-                <p>Add Card</p>
+            <section onClick={toggleAddCardMsg} className='sidebar-section border-b bg-[#e0fbfc]'>
+                <p className='ml-2 w-20 text-center'>Add Card</p>
                 <PlusCircleIcon className='w-6' />
             </section>
 
-            <section onClick={sortCards} className='flex space-x-1 pl-[4.7rem] md:pl-[6.6rem] py-1 cursor-pointer text-sm border-b border-gray-400'>
-                <p>Sort</p>
+            <section onClick={sortCards} className='flex space-x-1 pl-[4.7rem] md:pl-[6.3rem] py-1 cursor-pointer text-sm border-b border-gray-400 bg-[#daeaeb] hover:font-semibold'>
+                <p className='w-8 text-center'>Sort</p>
                 <ChevronUpDownIcon className='w-5' />
             </section>
 
-            <section className='h-[calc(100vh-11rem)] overflow-y-auto scroll'>
+            <section className='h-[calc(100vh-10.8rem)] overflow-y-auto scroll bg-[#f2f2f2]'>
                 {questionList}
             </section>
 
-            <section onClick={openDltMsg} className='sidebar-section border-t'>
-                <p>Delete All</p>
+            <section onClick={openDltMsg} className='sidebar-section bg-[#ee6c4d]'>
+                <p className='ml-2 w-20 text-center'>Delete All</p>
                 <TrashIcon className='w-6' />
             </section>
 

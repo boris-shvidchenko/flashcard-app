@@ -1,3 +1,6 @@
+// Components
+import Image from 'next/image.js';
+
 // Hooks
 import { useContext } from 'react';
 
@@ -22,9 +25,9 @@ export default function Header() {
         if (!state.userLoggedIn) {
             dispatch({ type: 'updateCards', cards: []})
             signInWithPopup(auth, provider)
+                .then(() => dispatch({type:'toggleLoggedIn', userLoggedIn: true}))
                 .then(() => console.log('User logged in'))
                 .catch(() => console.log('User closed the login window without logging in.'));
-            dispatch({type:'toggleLoggedIn', userLoggedIn: true})
         }
         if (state.userLoggedIn) {
             signOut(auth)
@@ -36,14 +39,17 @@ export default function Header() {
     }
 
     return (
-        <header className='bg-white h-16 border-b border-gray-400 flex items-center justify-between px-10 z-30'>
-            <h1>Flashcards</h1>
-            <section onClick={logIn} className={`${!state.userLoggedIn ? 'flex' : 'hidden'} items-center space-x-3 cursor-pointer`}>
-                <p>Login</p>
+        <header className='bg-[#98c1d9] h-16 border-b border-gray-400 shadow-md flex items-center justify-between px-10 z-30'>
+            <section className='flex items-center space-x-3'>
+                <Image src='/favicon.png' width={33} height={33} alt='App logo' />
+                <h1 className='text-xl'>Flashcards</h1>
+            </section>   
+            <section onClick={logIn} className={`${!state.userLoggedIn ? 'flex' : 'hidden'} header-login`}>
+                <p className='header-btn'>Login</p>
                 <UserCircleIcon className='w-8' />
             </section>
-            <section onClick={logIn} className={`${state.userLoggedIn ? 'flex' : 'hidden'} items-center space-x-3 cursor-pointer`}>
-                <p>Logout</p>
+            <section onClick={logIn} className={`${state.userLoggedIn ? 'flex' : 'hidden'} header-login`}>
+                <p className='header-btn'>Logout</p>
                 {state.profilePic === '' ? <UserCircleIcon className='w-8' /> : <img src={state.profilePic} className='w-7 h-7 rounded-full' />}
             </section>
         </header>
