@@ -45,22 +45,22 @@ export default function Card() {
     }, [state.randomCard])
 
     return (
-        <div className='bg-white border border-gray-400 w-[26rem] h-[65%] p-10 mx-auto relative top-20 flex flex-col space-y-8 items-center justify-center rounded-sm z-20 overflow-x-hidden scroll'>
-            <section className='flex flex-col items-center'>
-                <p className={`${state.showAnswer ? 'hidden' : ''} mb-3`}>Question:</p>
-                <p className={`${state.showAnswer ? 'hidden' : ''} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.showCard?.question : Object.keys(state.showCard).length === 0 ? state?.cards[0].question : state?.showCard?.question}</p>
-                <p className={`${state.showAnswer ? '' : 'hidden'} mb-3`}>Answer:</p>
-                <p className={`${state.showAnswer ? '' : 'hidden'} break-words w-[20rem] max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].answer : state?.randomize ? state?.showCard?.answer : Object.keys(state.showCard).length === 0 ? state?.cards[0].answer : state?.showCard?.answer}</p>
+        <div className='bg-[#f7f5f5] border border-gray-300 w-[26rem] h-[65%] p-10 mx-auto relative top-20 flex flex-col items-center justify-center rounded-2xl z-20 overflow-x-hidden scroll shadow-xl drop-shadow-md'>
+            <section className='flex flex-col items-center mb-10'>
+                <p className={`${state.showAnswer ? 'hidden' : ''} mb-3 underline text-lg`}>Question:</p>
+                <p className={`italic ${state.showAnswer ? 'hidden' : ''} break-words w-[20rem] h-32 max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.showCard?.question : Object.keys(state.showCard).length === 0 ? state?.cards[0].question : state?.showCard?.question}</p>
+                <p className={`${state.showAnswer ? '' : 'hidden'} mb-3 underline text-lg`}>Answer:</p>
+                <p className={`italic ${state.showAnswer ? '' : 'hidden'} break-words w-[20rem] h-32 max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].answer : state?.randomize ? state?.showCard?.answer : Object.keys(state.showCard).length === 0 ? state?.cards[0].answer : state?.showCard?.answer}</p>
             </section>
 
-            <section className='text-lg w-80 justify-between flex'>
-                <button onClick={toggleAnswer} className={`msg-btn w-36 ${state.showAnswer ? 'hidden' : ''}`}>Show Answer</button>
-                <button onClick={toggleAnswer} className={`msg-btn w-36 ${state.showAnswer ? '' : 'hidden'}`}>Show Question</button>
-                <button onClick={openEditWindow} className='msg-btn w-36'>Edit Card</button>
+            <section className='text-lg w-80 justify-evenly flex mb-5'>
+                <button onClick={toggleAnswer} className={`msg-btn ${state.showAnswer ? 'hidden' : ''}`}>Answer</button>
+                <button onClick={toggleAnswer} className={`msg-btn ${state.showAnswer ? '' : 'hidden'}`}>Question</button>
+                <button onClick={openEditWindow} className='msg-btn '>Edit</button>
             </section> 
 
-            <section onClick={randomizeCard} className='hidden sm:flex cursor-pointer border border-black justify-center p-1 w-40 space-x-3 select-none'>
-                <p>Shuffle</p>
+            <section onClick={randomizeCard} className='hidden sm:flex cursor-pointer justify-center msg-btn w-36 py-1 space-x-2'>
+                <p className='w-14 text-center'>Shuffle</p>
                 <ArrowPathRoundedSquareIcon className='w-6' />
             </section>   
 

@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+    font-family: 'Inter', sans-serif; 
+}
+
+.header-title {
+    font-family: 'Merriweather', serif;
+}
+
 @layer components {
     .scroll {
-        @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent
+        @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent scrollbar-thumb-rounded-md
     }
 
     .desktop-components {
@@ -16,7 +24,7 @@
     }
 
     .msg-btn {
-        @apply border border-black px-2 w-32 select-none
+        @apply rounded-md bg-[#c3dadb] w-32 hover:font-semibold select-none
     }
 
     .header-login {
@@ -29,6 +37,10 @@
 
     .sidebar-btn-text {
         @apply ml-2 w-20 text-center
+    }
+
+    .main-container-btn {
+        @apply flex items-center justify-center space-x-3 px-10 cursor-pointer w-full select-none hover:font-semibold
     }
 }
 

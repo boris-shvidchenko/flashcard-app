@@ -71,11 +71,11 @@ export default function MainContainer() {
                 </section> 
 
                 <section className='flex h-16 z-20 bg-[#c3dadb]'>
-                    <div onClick={openMobileCardsModal} className='flex items-center justify-center space-x-3 px-10 cursor-pointer border-r border-gray-400 w-full select-none hover:font-semibold'>
+                    <div onClick={openMobileCardsModal} className='main-container-btn border-r border-gray-400'>
                         <p className='text-center w-24'>View Cards</p>
                         <Bars3Icon className='w-6' />
                     </div>
-                    <div onClick={toggleAddCardMsg} className='flex items-center justify-center space-x-3 px-10 cursor-pointer w-full select-none hover:font-semibold'>
+                    <div onClick={toggleAddCardMsg} className='main-container-btn'>
                         <p className='text-center w-24'>Add Card</p>
                         <PlusCircleIcon className='w-6' />
                     </div>
