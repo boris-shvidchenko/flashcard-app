@@ -19,6 +19,34 @@ body {
         @apply hidden sm:block
     }
 
+    .popup-container {
+        @apply absolute flex justify-center bg-black/70 w-screen h-screen z-40
+    }
+
+    .popup {
+        @apply relative bg-[#f7f5f5] shadow-xl drop-shadow-md w-96 h-72 mt-32 p-10 pt-6 text-center rounded-2xl
+    }
+
+    .popup-x {
+        @apply w-6 absolute top-3 right-3 cursor-pointer
+    }
+
+    .popup-title {
+        @apply mb-3 font-semibold text-lg
+    }
+
+    .popup-input {
+        @apply border border-gray-400 rounded-md my-2 px-1 focus:outline-none 
+    }
+
+    .popup-btn {
+        @apply msg-btn mx-auto mt-5 py-1
+    }
+
+    .popup-btn-container {
+        @apply flex items-center mx-auto justify-between px-2 mt-3 text-lg
+    }
+
     .sidebar-section {
         @apply flex items-center space-x-2 pl-10 md:pl-16 h-10 border-gray-400 cursor-pointer hover:font-semibold
     }
@@ -41,6 +69,14 @@ body {
 
     .main-container-btn {
         @apply flex items-center justify-center space-x-3 px-10 cursor-pointer w-full select-none hover:font-semibold
+    }
+
+    .card-header {
+        @apply mb-3 underline text-lg
+    }
+
+    .card-results {
+        @apply italic break-words w-[20rem] h-32 max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center
     }
 }
 

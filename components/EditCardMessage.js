@@ -49,19 +49,16 @@ export default function EditCardMessage() {
     }, [])
     
     return (
-        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
-            <div className='relative bg-white rounded-sm w-96 h-64 mt-32 p-10 pt-4 text-center'>
-                <XMarkIcon onClick={closeEditWindow} className='w-6 absolute top-2 right-2 cursor-pointer' />
-                <h1 className='mb-3 font-semibold text-lg'>Edit Card</h1>
+        <div className='popup-container'>
+            <div className='popup'>
+                <XMarkIcon onClick={closeEditWindow} className='popup-x' />
+                <h1 className='popup-title'>Edit Card</h1>
                 <form onSubmit={saveEdit} method='post' className='flex flex-col'>
-
                     <label htmlFor='question'>Question</label>
-                    <input onChange={(e) => editCard(e)} value={state.newCard.question} className='border border-black my-2' id='question' name='question' type='text' />
-
+                    <input onChange={(e) => editCard(e)} value={state.newCard.question} className='popup-input' id='question' name='question' type='text' />
                     <label htmlFor='answer'>Answer</label>
-                    <input onChange={(e) => editCard(e)} value={state.newCard.answer} className='border border-black my-2' id='answer' name='answer' type='text' />
-
-                    <button type='submit' className='msg-btn mx-auto mt-3'>Save Edit</button>
+                    <input onChange={(e) => editCard(e)} value={state.newCard.answer} className='popup-input' id='answer' name='answer' type='text' />
+                    <button type='submit' className='popup-btn'>Save Edit</button>
                 </form>
             </div>
 

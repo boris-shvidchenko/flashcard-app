@@ -31,19 +31,15 @@ export default function IntroMessage() {
     }
 
     return (
-        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
-            <div className='relative bg-white rounded-sm w-96 h-40 mt-32 p-10 text-center'>
-                <XMarkIcon onClick={closeIntroMsg} className='w-6 absolute top-2 right-2 cursor-pointer' />
-
-                <p>Login to save your flashcards.</p>
-
-                <section className='flex items-center mx-auto justify-between px-2 mt-3 text-lg'>
+        <div className='popup-container'>
+            <div className='popup h-44 pt-12'>
+                <XMarkIcon onClick={closeIntroMsg} className='popup-x' />
+                <p className='pb-3'>Login to save your flashcards.</p>
+                <section className='popup-btn-container'>
                     <button className='msg-btn' onClick={logIn}>Login</button>
                     <button className='msg-btn' onClick={closeIntroMsg}>Next Time</button>
                 </section>
-
             </div>
-
         </div>
     )
 }

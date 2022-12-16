@@ -41,16 +41,16 @@ export default function AddCardMessage() {
     }
 
     return (
-        <div className='absolute flex justify-center bg-black/60 w-screen h-screen z-30'>
-            <div className='relative bg-white rounded-sm w-96 h-64 mt-32 p-10 pt-4 text-center'>
-                <XMarkIcon onClick={toggleAddCardMsg} className='w-6 absolute top-2 right-2 cursor-pointer' />
-                <h1 className='mb-3 font-semibold text-lg'>Add New Card</h1>
+        <div className='popup-container '>
+            <div className='popup'>
+                <XMarkIcon onClick={toggleAddCardMsg} className='popup-x' />
+                <h1 className='popup-title'>Add New Card</h1>
                 <form onSubmit={(e) => addCard(e)} method='post' className='flex flex-col'>
                     <label htmlFor='question'>Question</label>
-                    <input onChange={(e) => updateNewCard(e)} value={state.newCard.question} className='border border-black my-2' required id='question' name='question' type='text' />
+                    <input onChange={(e) => updateNewCard(e)} value={state.newCard.question} className='popup-input' required id='question' name='question' type='text' />
                     <label htmlFor='answer'>Answer</label>
-                    <input onChange={(e) => updateNewCard(e)} value={state.newCard.answer} className='border border-black my-2' required id='answer' name='answer' type='text' />
-                    <button type='submit' className='msg-btn mx-auto mt-3'>Create Card</button>
+                    <input onChange={(e) => updateNewCard(e)} value={state.newCard.answer} className='popup-input' required id='answer' name='answer' type='text' />
+                    <button type='submit' className='popup-btn'>Create Card</button>
                 </form>
             </div>
         </div>
