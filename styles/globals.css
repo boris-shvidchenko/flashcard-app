@@ -12,8 +12,10 @@ body {
 
 @layer components {
     .scroll {
-        @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent scrollbar-thumb-rounded-md
+        @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent 
     }
+
+    /* scrollbar-thumb-rounded-md < Use this to round the scrollbar thumb */
 
     .desktop-components {
         @apply hidden sm:block
@@ -77,6 +79,10 @@ body {
 
     .card-results {
         @apply italic break-words w-[20rem] h-32 max-h-32 overflow-y-scroll scroll p-2 pl-3 text-center
+    }
+
+    .mobile-array-btn {
+        @apply flex space-x-3 py-3 cursor-pointer w-full justify-center select-none hover:font-semibold
     }
 }
 

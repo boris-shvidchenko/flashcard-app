@@ -33,9 +33,9 @@ export default function Question({ question, id }) {
     }
 
     return(
-        <div className='flex border-b border-gray-300 justify-evenly pl-4 md:pl-0 p-2'>
+        <div className='flex border-b border-gray-300 justify-evenly sm:pl-4 md:pl-0 py-2'>
             <p onClick={showCard} className='px-4 sm:pl-2 truncate w-32 md:w-44 cursor-pointer'>{question}</p>
-            <XMarkIcon onClick={dltOneCard} className='mr-4 md:mr-0 w-6 text-red-600 hover:text-red-800 cursor-pointer' />
+            <XMarkIcon onClick={dltOneCard} className='mr-11 sm:mr-4 md:mr-0 w-6 text-red-600 hover:text-red-800 cursor-pointer' />
         </div>
     )
 }
