@@ -32,7 +32,7 @@ export default function Sidebar() {
             const cardQuestions = state.cards.map((card) => {
                 return {question: card.question, id: card.id}
             })
-            cardQuestions.sort((a,b) => a.question === b.question ? 0 : a.question > b.question ?  1 : -1);
+            cardQuestions.sort((a,b) => a.question.toUpperCase() > b.question.toUpperCase() ?  1 : -1);
             console.log(cardQuestions)
             let tempSortedCards = [];
             for (let q of cardQuestions) {

@@ -34,8 +34,9 @@ export default function EditCardMessage() {
         let tempSortedCardArray = [];
         for (let card of state?.cards) card.id === state?.newCard.id ? tempCardArray.push(state?.newCard) : tempCardArray.push(card);
         for (let card of state?.sortedCards) card.id === state?.newCard.id ? tempSortedCardArray.push(state?.newCard) : tempSortedCardArray.push(card);
+        const newUpdatedCards = tempSortedCardArray.sort((a, b) => (a.question.toUpperCase() > b.question.toUpperCase() ? 1 : -1))
         dispatch({type: 'updateCards', cards: tempCardArray})
-        dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
+        dispatch({type: 'updateSortedCards', sortedCards: newUpdatedCards})
         const tempCard = tempCardArray.filter((card) => card.id === state.newCard.id);
         console.log(tempCard)
         dispatch({type: 'showCard', showCard: tempCard[0]})

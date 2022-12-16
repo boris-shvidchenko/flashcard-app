@@ -27,7 +27,7 @@ export default function AddCardMessage() {
         dispatch({type: 'toggleRandomize', randomize: false});
         dispatch({type: 'storeRandomCard', randomCard: {}})
         dispatch({type: 'updateCards', cards: [...state.cards, state.newCard]})
-        const newUpdatedCards = [...state.sortedCards, state.newCard].sort((a, b) => (a.question > b.question ? 1 : -1))
+        const newUpdatedCards = [...state.sortedCards, state.newCard].sort((a, b) => (a.question.toUpperCase() > b.question.toUpperCase() ? 1 : -1))
         dispatch({type: 'updateSortedCards', sortedCards: newUpdatedCards})
         if (state?.cards?.length === 1) {
             dispatch({type: 'showCard', showCard: state?.cards[0]})
