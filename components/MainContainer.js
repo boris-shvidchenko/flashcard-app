@@ -43,7 +43,7 @@ export default function MainContainer() {
                 <CardContainer />
             </section>
             {/* Mobile View */}
-            <div className='flex flex-col sm:hidden bg-[#f0f2ed]'>
+            <div className='flex flex-col sm:hidden bg-[#f0f2ed] h-full'>
                 <CardContainer />
                 <section className='flex h-16 z-20 bg-[#c3dadb]'>
                     <div onClick={openMobileCardsModal} className='main-container-btn border-r border-gray-400'>
