@@ -1,3 +1,4 @@
+// Components
 import { Html, Head, Main, NextScript } from 'next/document';
 
 // This file is used to add Google Font stylesheets to the document and to avoid possible errors/warnings. Referenced from 'https://nextjs.org/docs/messages/no-stylesheets-in-head-component'. Favicons and metadata will be stored here as well.
