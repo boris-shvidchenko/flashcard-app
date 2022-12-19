@@ -45,7 +45,7 @@ export default function Card() {
     }, [state.randomCard])
 
     return (
-        <div className='bg-[#f7f5f5] border border-gray-300 w-[26rem] h-[30rem] mx-auto relative top-10 sm:top-20 flex flex-col items-center justify-center rounded-2xl z-20 overflow-x-hidden scroll scrollbar-thumb-rounded-md shadow-xl drop-shadow-md'>
+        <div className={`bg-[#f7f5f5] border border-gray-300 ${state.screenWidth.width < 500 ? 'w-80' : 'w-96'} sm:w-[26rem] h-[30rem] mx-auto relative top-10 sm:top-20 flex flex-col items-center justify-center rounded-2xl z-20 overflow-x-hidden scroll scrollbar-thumb-rounded-md shadow-xl drop-shadow-md`}>
             <section className='flex flex-col items-center mb-10'>
                 <p className={`${state.showAnswer ? 'hidden' : ''} card-header`}>Question:</p>
                 <p className={`${state.showAnswer ? 'hidden' : ''} card-results scrollbar-thumb-rounded-md`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].question : state?.randomize ? state?.showCard?.question : Object.keys(state.showCard).length === 0 ? state?.cards[0].question : state?.showCard?.question}</p>

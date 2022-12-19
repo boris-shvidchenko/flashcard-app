@@ -34,7 +34,8 @@ export default function MyApp({ Component, pageProps }) {
     randomCard: {},
     userLoggedIn: false,
     loading: false,
-    profilePic: ''
+    profilePic: '',
+    screenWidth: {width: ''}
   };
   
   // Set up useReducer and reducer function
@@ -74,10 +75,26 @@ export default function MyApp({ Component, pageProps }) {
         return {...state, loading: action.loading};
       case 'updateProfilePic':
         return {...state, profilePic: action.profilePic};
+      case 'updateScrnWidth':
+        return {...state, screenWidth: action.screenWidth};
       default:
         return state;
       }
   }
+
+  // Sets the mobileView state width property to the current browser width. This is used in order to render components based on whether mobile view is used or not.
+  // The code in the useEffect hook was referenced from the following source: https://stackoverflow.com/questions/63406435/how-to-detect-window-size-in-next-js-ssr-using-react-hook
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      function handleResize() {
+        dispatch({type: 'updateScrnWidth', screenWidth: {width: window.innerWidth}});
+      }
+      window.addEventListener('resize', handleResize);
+      handleResize();
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []); 
+  console.log(state.screenWidth)
   
   // Obtain the user and loading state
   const [user, loading] = useAuthState(auth);
