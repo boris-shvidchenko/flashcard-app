@@ -14,7 +14,7 @@ import { Context } from '../pages/_app.js';
 export default function IntroMessage() {
 
     // Get state from Context
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     // Closes intro message
     function closeIntroMsg() {
@@ -32,7 +32,7 @@ export default function IntroMessage() {
 
     return (
         <div className='popup-container'>
-            <div className='popup h-44 pt-12'>
+            <div className={`${state.screenWidth.width < 400 ? 'w-80' : ''} popup h-44 pt-12`}>
                 <XMarkIcon onClick={closeIntroMsg} className='popup-x' />
                 <p className='pb-3'>Login to save your flashcards.</p>
                 <section className='popup-btn-container'>

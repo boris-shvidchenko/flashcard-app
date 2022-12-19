@@ -50,7 +50,7 @@ export default function MobileCardsArray() {
 
     return(
         <div className='popup-container'>
-            <div className='popup h-[31.25rem] pt-4'>
+            <div className={`popup ${state.screenWidth.width < 400 ? 'w-80' : ''} h-[31.25rem] pt-4 mt-24`}>
                 <XMarkIcon onClick={closeMobileCardsModal} className='popup-x' />
                 <section className='my-7 mx-2 h-[23rem] overflow-y-scroll scroll scrollbar-thumb-rounded-md'>
                     {questionList}

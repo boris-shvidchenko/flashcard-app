@@ -10,7 +10,7 @@ import { Context } from '../pages/_app.js';
 export default function DeleteMessage() {
 
     // Get state from Context
-    const { dispatch } = useContext(Context);
+    const { state, dispatch } = useContext(Context);
 
     // Closes delete message
     function closeDltMsg() {
@@ -30,7 +30,7 @@ export default function DeleteMessage() {
 
     return (
         <div className='popup-container z-50'>
-            <div className='popup h-48 pt-10'>
+            <div className={`popup ${state.screenWidth.width < 400 ? 'w-80' : ''} h-48 pt-10`}>
                 <XMarkIcon onClick={closeDltMsg} className='popup-x' />
                 <p className='pb-5'>Are you sure you want to delete all of your cards?</p>
                 <section className='popup-btn-container'>

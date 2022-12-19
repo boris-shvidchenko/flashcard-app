@@ -49,7 +49,7 @@ export default function EditCardMessage() {
     
     return (
         <div className='popup-container'>
-            <div className='popup'>
+            <div className={`popup ${state.screenWidth.width < 400 ? 'w-80' : ''}`}>
                 <XMarkIcon onClick={closeEditWindow} className='popup-x' />
                 <h1 className='popup-title'>Edit Card</h1>
                 <form onSubmit={saveEdit} method='post' className='flex flex-col'>

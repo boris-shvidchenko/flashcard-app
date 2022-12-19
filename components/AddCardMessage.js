@@ -41,8 +41,8 @@ export default function AddCardMessage() {
     }
 
     return (
-        <div className='popup-container '>
-            <div className='popup'>
+        <div className='popup-container'>
+            <div className={`popup ${state.screenWidth.width < 400 ? 'w-80' : ''}`}>
                 <XMarkIcon onClick={toggleAddCardMsg} className='popup-x' />
                 <h1 className='popup-title'>Add New Card</h1>
                 <form onSubmit={(e) => addCard(e)} method='post' className='flex flex-col'>
