@@ -4,11 +4,13 @@
 
 body {
     font-family: 'Inter', sans-serif; 
+    height: 100%;
+    overflow: hidden;
 }
 
-/* .header-title {
+.header-title {
     font-family: 'Roboto Slab', serif;
-} */
+}
 
 @layer components {
     .scroll {
