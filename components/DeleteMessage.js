@@ -34,8 +34,8 @@ export default function DeleteMessage() {
                 <XMarkIcon onClick={closeDltMsg} className='popup-x' />
                 <p className='pb-5'>Are you sure you want to delete all of your cards?</p>
                 <section className='popup-btn-container'>
-                    <button className='msg-btn bg-[#ee6c4d]' onClick={dltAllCards}>Delete</button>
-                    <button className='msg-btn' onClick={closeDltMsg}>Cancel</button>
+                    <button className={`msg-btn bg-[#ee6c4d] ${state.screenWidth.width < 400 ? 'w-[6.5rem]' : ''}`} onClick={dltAllCards}>Delete</button>
+                    <button className={`msg-btn ${state.screenWidth.width < 400 ? 'w-[6.5rem]' : ''}`} onClick={closeDltMsg}>Cancel</button>
                 </section>
             </div>
         </div>

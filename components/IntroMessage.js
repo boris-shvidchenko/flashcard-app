@@ -36,8 +36,8 @@ export default function IntroMessage() {
                 <XMarkIcon onClick={closeIntroMsg} className='popup-x' />
                 <p className='pb-3'>Login to save your flashcards.</p>
                 <section className='popup-btn-container'>
-                    <button className='msg-btn' onClick={logIn}>Login</button>
-                    <button className='msg-btn' onClick={closeIntroMsg}>Next Time</button>
+                    <button className={`msg-btn ${state.screenWidth.width < 400 ? 'w-[6.5rem]' : ''}`} onClick={logIn}>Login</button>
+                    <button className={`msg-btn ${state.screenWidth.width < 400 ? 'w-[6.5rem]' : ''}`} onClick={closeIntroMsg}>Next Time</button>
                 </section>
             </div>
         </div>
