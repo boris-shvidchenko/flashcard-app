@@ -34,7 +34,7 @@ export default function MainContainer() {
     }, [state.randomCard])
 
     return (
-        <main className={`${state.screenWidth.width < 500 ? 'h-full' : ''} h-[calc(100vh-4rem)] flex`}>
+        <main className={`${state.screenWidth.width < 360 ? 'h-screen' : ''} h-[calc(100vh-4rem)] flex`}>
             {/* Desktop View */}
             <section className='desktop-components'>
                 <Sidebar />
