@@ -6,9 +6,9 @@ body {
     font-family: 'Inter', sans-serif; 
 }
 
-/* .header-title {
-    font-family: 'Merriweather', serif;
-} */
+.header-title {
+    font-family: 'Roboto Slab', serif;
+}
 
 @layer components {
     .scroll {
