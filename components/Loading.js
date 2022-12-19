@@ -1,3 +1,4 @@
+// Components
 import { Oval } from 'react-loader-spinner';
 
 export default function Loading() {

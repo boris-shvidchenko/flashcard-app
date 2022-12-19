@@ -17,18 +17,18 @@ export default function Question({ question, id }) {
         let tempCardArray = state.cards.filter((card) => card.id !== id);
         let tempSortedCardArray = state.sortedCards.filter((card) => card.id !== id);
         dispatch({type: 'updateCards', cards: tempCardArray});
-        dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray})
-        dispatch({type: 'showCard', showCard: tempCardArray[0]})
-        if (tempCardArray.length === 0) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
+        dispatch({type: 'updateSortedCards', sortedCards: tempSortedCardArray});
+        dispatch({type: 'showCard', showCard: tempCardArray[0]});
+        if (tempCardArray.length === 0) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false});
     }
 
     // Changes showAnswer to false so that the answer is hidden for the other cards, toggles randomize state to false, returns randomCard state to false, then search cards for the card with the same id as selected card (in sidebar) to render to page. 
     function showCard() {
         if (state.showAnswer) dispatch({ type:'showAnswer', showAnswer: false});
         dispatch({type: 'toggleRandomize', randomize: false});
-        dispatch({type: 'storeRandomCard', randomCard: {}})
+        dispatch({type: 'storeRandomCard', randomCard: {}});
         const tempCard = state.cards.filter((card) => card.id === id);
-        dispatch({type: 'showCard', showCard: tempCard[0]})
+        dispatch({type: 'showCard', showCard: tempCard[0]});
         if (state.showMobileCardsArray) dispatch({type: 'showMobileCardsArray'});
     }
 

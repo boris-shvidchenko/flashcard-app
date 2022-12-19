@@ -17,27 +17,27 @@ export default function AddCardMessage() {
 
     // Closes add card message and returns newCardData to default value
     function toggleAddCardMsg() {
-        dispatch({type: 'toggleAddCardMsg'})
-        dispatch({type: 'updateNewCard', newCard: {question: '', answer: '', id: ''}})
+        dispatch({type: 'toggleAddCardMsg'});
+        dispatch({type: 'updateNewCard', newCard: {question: '', answer: '', id: ''}});
     }
 
-    // On submit prevents default, returns randomizes state to false, pushes new data to card array and sorted card state, updates what card to show, closes add card message, and returns newCardData to default value. Reference for sorting array of objects based on property > https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
+    // On submit prevents default, returns randomize state to false, pushes new data to card array and sorted card state, updates what card to show, closes add card message, and returns newCardData to default value. Reference for sorting array of objects based on property > https://flaviocopes.com/how-to-sort-array-of-objects-by-property-javascript/
     function addCard(e) {
         e.preventDefault();
         dispatch({type: 'toggleRandomize', randomize: false});
-        dispatch({type: 'storeRandomCard', randomCard: {}})
-        dispatch({type: 'updateCards', cards: [...state.cards, state.newCard]})
-        const newUpdatedCards = [...state.sortedCards, state.newCard].sort((a, b) => (a.question.toUpperCase() > b.question.toUpperCase() ? 1 : -1))
-        dispatch({type: 'updateSortedCards', sortedCards: newUpdatedCards})
+        dispatch({type: 'storeRandomCard', randomCard: {}});
+        dispatch({type: 'updateCards', cards: [...state.cards, state.newCard]});
+        const newUpdatedCards = [...state.sortedCards, state.newCard].sort((a, b) => (a.question.toUpperCase() > b.question.toUpperCase() ? 1 : -1));
+        dispatch({type: 'updateSortedCards', sortedCards: newUpdatedCards});
         if (state?.cards?.length === 1) {
-            dispatch({type: 'showCard', showCard: state?.cards[0]})
+            dispatch({type: 'showCard', showCard: state?.cards[0]});
         } 
         toggleAddCardMsg();
     }
 
     // Update newCardData state to add new card info
     function updateNewCard(e) {
-        dispatch({ type: 'updateNewCard', newCard: {...state.newCard, [e.target.name]: e.target.value, id: nanoid()}})
+        dispatch({ type: 'updateNewCard', newCard: {...state.newCard, [e.target.name]: e.target.value, id: nanoid()}});
     }
 
     return (

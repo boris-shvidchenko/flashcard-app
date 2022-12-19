@@ -18,24 +18,23 @@ export default function MainContainer() {
 
     // Opens add card message, if no cards are present in card list state, return the showCard state to default only if showMobileCardsArray is false.
     function toggleAddCardMsg() {
-        if (state?.cards?.length === 0) dispatch({type: 'showCard', showCard: {}})
-        if (!state?.showMobileCardsArray && !state?.introMessage) dispatch({type: 'toggleAddCardMsg'})
+        if (state?.cards?.length === 0) dispatch({type: 'showCard', showCard: {}});
+        if (!state?.showMobileCardsArray && !state?.introMessage) dispatch({type: 'toggleAddCardMsg'});
     }
 
     // If showMobileCardsArrauy is true, return it to false. Opens mobile card array modal if length of cards array is greater than 0 and showMobileCardsArray is false.
     function openMobileCardsModal() {
-        if (state.showMobileCardsArray) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
-        if (state?.cards.length > 0 && !state?.showMobileCardsArray && !state?.addCardMessage) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
+        if (state.showMobileCardsArray) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false});
+        if (state?.cards.length > 0 && !state?.showMobileCardsArray && !state?.addCardMessage) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true});
     }
 
     // On random card state change, if the random card obj is not empty update the show card state
     useEffect(() => {
-        if (Object.keys(state.randomCard).length !== 0 ) dispatch({type: 'showCard', showCard: state.randomCard})
+        if (Object.keys(state.randomCard).length !== 0 ) dispatch({type: 'showCard', showCard: state.randomCard});
     }, [state.randomCard])
 
     return (
         <main className='h-[calc(100vh-4rem)] flex'>
-            
             {/* Desktop View */}
             <section className='desktop-components'>
                 <Sidebar />
@@ -43,11 +42,9 @@ export default function MainContainer() {
             <section className='desktop-components'>
                 <CardContainer />
             </section>
-
             {/* Mobile View */}
             <div className='flex flex-col sm:hidden bg-[#f0f2ed]'>
                 <CardContainer />
-
                 <section className='flex h-16 z-20 bg-[#c3dadb]'>
                     <div onClick={openMobileCardsModal} className='main-container-btn border-r border-gray-400'>
                         <p className='text-center w-max'>View Cards</p>
@@ -58,9 +55,7 @@ export default function MainContainer() {
                         <PlusCircleIcon className='icons' />
                     </div>
                 </section>
-
             </div>
-
         </main>
     )
 }

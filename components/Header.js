@@ -9,7 +9,6 @@ import { Context } from '../pages/_app.js';
 
 // Heroicons
 import { UserCircleIcon } from '@heroicons/react/24/outline';
-// import { UserCircleIcon } from '@heroicons/react/24/solid';
 
 // Firebase
 import { signInWithPopup, signOut } from 'firebase/auth';
@@ -23,7 +22,7 @@ export default function Header() {
     // Open login window for Google. If user is logged in, logout and update profilePic state to remove profile pic. Log error if user closes the window without logging in
     function logIn() {
         if (!state.userLoggedIn) {
-            dispatch({ type: 'updateCards', cards: []})
+            dispatch({ type: 'updateCards', cards: []});
             signInWithPopup(auth, provider)
                 .then(() => dispatch({type:'toggleLoggedIn', userLoggedIn: true}))
                 .then(() => console.log('User logged in'))
@@ -34,7 +33,7 @@ export default function Header() {
                 .then(() => dispatch({type:'toggleLoggedIn', userLoggedIn: false}))
                 .then(() => console.log('User logged out'))
                 .catch((err) => console.log(err));
-            dispatch({type: 'updateProfilePic', profilePic: ''})
+            dispatch({type: 'updateProfilePic', profilePic: ''});
         }
     }
 

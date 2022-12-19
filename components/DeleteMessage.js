@@ -14,17 +14,17 @@ export default function DeleteMessage() {
 
     // Closes delete message
     function closeDltMsg() {
-        dispatch({type: 'toggleDltMsg'})
+        dispatch({type: 'toggleDltMsg'});
     }
 
     // Deletes all cards, returns randomCard, randomize, cards, sortedCards, showCard, showMobileCardsArray, and updateDB state to default value, closes delete message. Deletes collection in firebase as well. 
     function dltAllCards() {
-        dispatch({type: 'storeRandomCard', randomCard: {}})
+        dispatch({type: 'storeRandomCard', randomCard: {}});
         dispatch({type: 'toggleRandomize', randomize: false});
         dispatch({type: 'updateCards', cards: []});
-        dispatch({type: 'updateSortedCards', sortedCards: []})
+        dispatch({type: 'updateSortedCards', sortedCards: []});
         dispatch({type: 'showCard', showCard: {}});
-        dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false})
+        dispatch({type: 'showMobileCardsArray', showMobileCardsArray: false});
         closeDltMsg();
     }
 

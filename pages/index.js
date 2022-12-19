@@ -17,7 +17,7 @@ import { Context } from '../pages/_app.js';
 export default function Home() {
 
   // Get state from Context
-  const { state, dispatch } = useContext(Context);
+  const { state } = useContext(Context);
 
   return (
     <>

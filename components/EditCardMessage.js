@@ -17,14 +17,13 @@ export default function EditCardMessage() {
     
     // Updates the new card state and closes the edit window
     function closeEditWindow() {
-        dispatch({ type: 'updateNewCard', newCard: {question: '', answer: '', id: ''}})
-        dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage})
+        dispatch({ type: 'updateNewCard', newCard: {question: '', answer: '', id: ''}});
+        dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage});
     }
-    
     
     // Edits the selected card by updating the new card state
     function editCard(e) {
-        dispatch({ type: 'updateNewCard', newCard: {...state.newCard, [e.target.name]: e.target.value, id: currentCard.id}})
+        dispatch({ type: 'updateNewCard', newCard: {...state.newCard, [e.target.name]: e.target.value, id: currentCard.id}});
     }
 
     // Saves the edit by updating the cards, sorted cards and show cards state. Then runs the closeEditWindow function.
@@ -34,18 +33,18 @@ export default function EditCardMessage() {
         let tempSortedCardArray = [];
         for (let card of state?.cards) card.id === state?.newCard.id ? tempCardArray.push(state?.newCard) : tempCardArray.push(card);
         for (let card of state?.sortedCards) card.id === state?.newCard.id ? tempSortedCardArray.push(state?.newCard) : tempSortedCardArray.push(card);
-        const newUpdatedCards = tempSortedCardArray.sort((a, b) => (a.question.toUpperCase() > b.question.toUpperCase() ? 1 : -1))
-        dispatch({type: 'updateCards', cards: tempCardArray})
-        dispatch({type: 'updateSortedCards', sortedCards: newUpdatedCards})
+        const newUpdatedCards = tempSortedCardArray.sort((a, b) => (a.question.toUpperCase() > b.question.toUpperCase() ? 1 : -1));
+        dispatch({type: 'updateCards', cards: tempCardArray});
+        dispatch({type: 'updateSortedCards', sortedCards: newUpdatedCards});
         const tempCard = tempCardArray.filter((card) => card.id === state.newCard.id);
-        console.log(tempCard)
-        dispatch({type: 'showCard', showCard: tempCard[0]})
+        console.log(tempCard);
+        dispatch({type: 'showCard', showCard: tempCard[0]});
         closeEditWindow();
     }
     
     // Once per render, update the new card state to the current card
     useEffect(() => {
-        dispatch({ type: 'updateNewCard', newCard: {question: currentCard.question, answer: currentCard.answer, id: currentCard.id}})
+        dispatch({ type: 'updateNewCard', newCard: {question: currentCard.question, answer: currentCard.answer, id: currentCard.id}});
     }, [])
     
     return (
@@ -61,7 +60,6 @@ export default function EditCardMessage() {
                     <button type='submit' className='popup-btn'>Save Edit</button>
                 </form>
             </div>
-
         </div>
     )
 }

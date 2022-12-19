@@ -14,12 +14,12 @@ export default function Card() {
 
     // Flip between question and answer
     function toggleAnswer(){
-        dispatch({ type:'showAnswer', showAnswer: !state.showAnswer})
+        dispatch({ type:'showAnswer', showAnswer: !state.showAnswer});
     }
 
     // Open edit window
     function openEditWindow() {
-        dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage})
+        dispatch({ type:'toggleEditCardMsg', editCardMessage: !state.editCardMessage});
     }
 
     // // Switch randomize state to true to allow random card to be selected, if cards array is not equal to 1 then select a random card from array and store it in random card state for use. While loop will continue until a card that isnt already selected is chosen randomly. Change show answer state to false if it is true
@@ -28,7 +28,7 @@ export default function Card() {
             dispatch({type: 'toggleRandomize', randomize: true});
             if (state.showAnswer) dispatch({type: 'showAnswer', showAnswer: false});
             while (true) {
-                let random = state?.cards[Math.floor(Math.random() * state.cards.length)]
+                let random = state?.cards[Math.floor(Math.random() * state.cards.length)];
                 if (random !== state.showCard) {
                     dispatch({type: 'storeRandomCard', randomCard: random});
                     return false;
@@ -41,7 +41,7 @@ export default function Card() {
 
     // On random card state change, if the random card obj is not empty update the show card state
     useEffect(() => {
-        if (Object.keys(state.randomCard).length !== 0 ) dispatch({type: 'showCard', showCard: state.randomCard})
+        if (Object.keys(state.randomCard).length !== 0 ) dispatch({type: 'showCard', showCard: state.randomCard});
     }, [state.randomCard])
 
     return (
@@ -52,18 +52,15 @@ export default function Card() {
                 <p className={`${state.showAnswer ? '' : 'hidden'} card-header`}>Answer:</p>
                 <p className={`${state.showAnswer ? '' : 'hidden'} card-results scrollbar-thumb-rounded-md`}>{state?.cards?.length === 1 || state?.showCard === undefined ? state?.cards[0].answer : state?.randomize ? state?.showCard?.answer : Object.keys(state.showCard).length === 0 ? state?.cards[0].answer : state?.showCard?.answer}</p>
             </section>
-
             <section className='text-lg w-80 justify-evenly flex mb-5'>
                 <button onClick={toggleAnswer} className={`msg-btn ${state.showAnswer ? 'hidden' : ''}`}>Answer</button>
                 <button onClick={toggleAnswer} className={`msg-btn ${state.showAnswer ? '' : 'hidden'}`}>Question</button>
                 <button onClick={openEditWindow} className='msg-btn '>Edit</button>
             </section> 
-
             <section onClick={randomizeCard} className='flex cursor-pointer justify-center msg-btn w-36 py-1 space-x-2'>
                 <p className='w-14 text-center'>Shuffle</p>
                 <ArrowPathRoundedSquareIcon className='icons' />
             </section>   
-
         </div>
     )
 }

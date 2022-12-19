@@ -35,7 +35,7 @@ export default function MyApp({ Component, pageProps }) {
     userLoggedIn: false,
     loading: false,
     profilePic: ''
-  }
+  };
   
   // Set up useReducer and reducer function
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -43,39 +43,39 @@ export default function MyApp({ Component, pageProps }) {
   function reducer(state, action) {
     switch(action.type) {
       case 'hideIntroMsg':
-        return {...state, introMessage: false}
+        return {...state, introMessage: false};
       case 'toggleDltMsg':
-        return {...state, deleteMessage: !state.deleteMessage}
+        return {...state, deleteMessage: !state.deleteMessage};
       case 'toggleAddCardMsg':
-        return {...state, addCardMessage: !state.addCardMessage}
+        return {...state, addCardMessage: !state.addCardMessage};
       case 'updateNewCard':
-        return {...state, newCard: action.newCard}
+        return {...state, newCard: action.newCard};
       case 'updateCards':
-        return {...state, cards: action.cards}
+        return {...state, cards: action.cards};
       case 'updateSortedCards':
-        return {...state, sortedCards: action.sortedCards}
+        return {...state, sortedCards: action.sortedCards};
       case 'showAnswer':
-        return {...state, showAnswer: !state.showAnswer}
+        return {...state, showAnswer: !state.showAnswer};
       case 'showCard':
-        return {...state, showCard: action.showCard}
+        return {...state, showCard: action.showCard};
       case 'showSortedCards':
-        return {...state, showSortedCards: !state.showSortedCards}
+        return {...state, showSortedCards: !state.showSortedCards};
       case 'toggleEditCardMsg':
-        return {...state, editCardMessage: action.editCardMessage}
+        return {...state, editCardMessage: action.editCardMessage};
       case 'showMobileCardsArray':
-        return {...state, showMobileCardsArray: action.showMobileCardsArray}
+        return {...state, showMobileCardsArray: action.showMobileCardsArray};
       case 'toggleRandomize':
-        return {...state, randomize: action.randomize}
+        return {...state, randomize: action.randomize};
       case 'storeRandomCard':
-        return {...state, randomCard: action.randomCard}
+        return {...state, randomCard: action.randomCard};
       case 'toggleLoggedIn':
-        return {...state, userLoggedIn: action.userLoggedIn}
+        return {...state, userLoggedIn: action.userLoggedIn};
       case 'toggleLoading':
-        return {...state, loading: action.loading}
+        return {...state, loading: action.loading};
       case 'updateProfilePic':
-        return {...state, profilePic: action.profilePic}
+        return {...state, profilePic: action.profilePic};
       default:
-        return state
+        return state;
       }
   }
   
@@ -89,11 +89,11 @@ export default function MyApp({ Component, pageProps }) {
       .then((snapshot) => {
         let cards = [];
         snapshot.docs.forEach((doc) => {
-          cards.push({ ...doc.data(), id: doc.id })
+          cards.push({ ...doc.data(), id: doc.id });
         })
-        dispatch({type: 'updateCards', cards: cards[0].cards})
+        dispatch({type: 'updateCards', cards: cards[0].cards});
       })
-      .catch((err) => console.log(err.message))
+      .catch((err) => console.log(err.message));
     }
   }, [user])
 
@@ -102,17 +102,14 @@ export default function MyApp({ Component, pageProps }) {
     // If user is logged in
     if (user) {
       // Update profile pic
-      dispatch({type: 'updateProfilePic', profilePic: user.photoURL})
-
+      dispatch({type: 'updateProfilePic', profilePic: user.photoURL});
       // (1) Obtain the documents from firebase, (2) move the existing documents to cards array, (3) if card array is empty (aka no documents exist for user in firebase) then add a new collection and document, (4) if the card array is not empty (aka no documents exist for user in firebase) then update the first document to prevent adding additional data to database, (5) log out any errors to console.
       let cards = [];
       getDocs(collection(db, user.uid))
         .then((snapshot) => {
           snapshot.docs.forEach((doc) => {
-            cards.push({ ...doc.data(), id: doc.id })
+            cards.push({ ...doc.data(), id: doc.id });
           })
-          // For testing
-          console.log(cards);
         })
         .then(() => {
           if (cards.length === 0) {
@@ -125,7 +122,7 @@ export default function MyApp({ Component, pageProps }) {
               .catch((error) => console.log(error));
           }
         })
-        .catch((err) => console.log(err.message))
+        .catch((err) => console.log(err.message));
     }
   }, [user, state.cards])
   
@@ -133,12 +130,8 @@ export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
     if (loading) dispatch({type:'toggleLoading', loading: true});
     if (!loading) dispatch({type:'toggleLoading', loading: false});
-    if (user) dispatch({type:'toggleLoggedIn', userLoggedIn: true})
+    if (user) dispatch({type:'toggleLoggedIn', userLoggedIn: true});
   }, [loading])
-  
-  // Testing purposes
-  console.log(state);
-  // console.log(user)
 
   return (
     <Context.Provider value={{ state, dispatch }}>

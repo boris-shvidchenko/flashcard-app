@@ -14,19 +14,19 @@ import { Context } from '../pages/_app.js';
 export default function IntroMessage() {
 
     // Get state from Context
-    const { state, dispatch } = useContext(Context);
+    const { dispatch } = useContext(Context);
 
     // Closes intro message
     function closeIntroMsg() {
-        dispatch({type: 'hideIntroMsg'})
+        dispatch({type: 'hideIntroMsg'});
     }
 
     // Open login window for Google and update userLoggedIn state to true. Log error if user closes the window without logging in
     function logIn() {
         signInWithPopup(auth, provider)
             .then(() => console.log('User logged in'))
-            .catch(() => console.log('User closed the login window without logging in.'))
-        dispatch({type:'toggleLoggedIn', userLoggedIn: true})
+            .catch(() => console.log('User closed the login window without logging in.'));
+        dispatch({type:'toggleLoggedIn', userLoggedIn: true});
         closeIntroMsg();
     }
 
