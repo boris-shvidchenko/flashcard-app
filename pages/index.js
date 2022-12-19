@@ -20,7 +20,7 @@ export default function Home() {
   const { state } = useContext(Context);
 
   return (
-    <main className='h-screen'>
+    <main className={`${state.screenWidth.width > 360 ? 'main-section' : ''}`}>
       {(state.loading) && <Loading />}
       {(state.introMessage && !state.userLoggedIn) && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}

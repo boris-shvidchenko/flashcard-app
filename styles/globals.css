@@ -13,6 +13,10 @@ body {
 }
 
 @layer components {
+    
+    .main-section {
+        @apply h-full overflow-hidden
+    }
     .scroll {
         @apply scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent; 
     }
