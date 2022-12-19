@@ -9,7 +9,7 @@ import MobileCardsArray from '../components/MobileCardsArray';
 import Loading from '../components/Loading';
 
 // Hooks
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 
 // Context
 import { Context } from '../pages/_app.js';
@@ -20,7 +20,7 @@ export default function Home() {
   const { state } = useContext(Context);
 
   return (
-    <>
+    <main className='h-screen'>
       {(state.loading) && <Loading />}
       {(state.introMessage && !state.userLoggedIn) && <IntroMessage />}
       {state.deleteMessage && <DeleteMessage />}
@@ -29,6 +29,6 @@ export default function Home() {
       {state.showMobileCardsArray && <MobileCardsArray />}
       <Header />
       <MainContainer /> 
-    </>
+    </main>
   )
 }
