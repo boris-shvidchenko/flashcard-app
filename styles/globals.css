@@ -78,7 +78,7 @@ body {
     }
 
     .card-header {
-        @apply mb-3 underline text-lg
+        @apply mb-3 underline underline-offset-2 text-lg
     }
 
     .card-results {

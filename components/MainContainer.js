@@ -3,7 +3,7 @@ import Sidebar from './Sidebar';
 import CardContainer from './CardContainer';
 
 // Heroicons
-import { PlusCircleIcon, Bars3Icon, ArrowPathRoundedSquareIcon } from '@heroicons/react/24/outline';
+import { PlusCircleIcon, Bars3Icon } from '@heroicons/react/24/outline';
 
 // Hooks
 import { useContext, useEffect } from 'react';
@@ -28,23 +28,6 @@ export default function MainContainer() {
         if (state?.cards.length > 0 && !state?.showMobileCardsArray && !state?.addCardMessage) dispatch({type: 'showMobileCardsArray', showMobileCardsArray: true})
     }
 
-    // Switch randomize state to true to allow random card to be selected, if cards array is greater than 1 then select a random card from array and store it in random card state for use. Change show answer state to false if it is true
-    function randomizeCard() {
-        if (state?.cards?.length > 1) {
-            dispatch({type: 'toggleRandomize', randomize: true});
-            if (state.showAnswer) dispatch({type: 'showAnswer', showAnswer: false});
-            while (true) {
-                let random = state?.cards[Math.floor(Math.random() * state.cards.length)]
-                if (random !== state.showCard) {
-                    dispatch({type: 'storeRandomCard', randomCard: random});
-                    return false;
-                } else {
-                    continue
-                }   
-            }
-        }
-    }
-
     // On random card state change, if the random card obj is not empty update the show card state
     useEffect(() => {
         if (Object.keys(state.randomCard).length !== 0 ) dispatch({type: 'showCard', showCard: state.randomCard})
@@ -64,11 +47,6 @@ export default function MainContainer() {
             {/* Mobile View */}
             <div className='flex flex-col sm:hidden bg-[#f0f2ed]'>
                 <CardContainer />
-
-                <section onClick={randomizeCard} className='cursor-pointer flex justify-center p-1 w-28 space-x-3 select-none ml-[68%] mb-9 text-gray-700 text-lg'>
-                    <p className='w-14 text-center hover:font-semibold'>Shuffle</p>
-                    <ArrowPathRoundedSquareIcon className='icons' />
-                </section> 
 
                 <section className='flex h-16 z-20 bg-[#c3dadb]'>
                     <div onClick={openMobileCardsModal} className='main-container-btn border-r border-gray-400'>
