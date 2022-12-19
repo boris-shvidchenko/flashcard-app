@@ -34,7 +34,7 @@ export default function MainContainer() {
     }, [state.randomCard])
 
     return (
-        <main className={`${state.screenWidth.width < 360 ? '' : ''} h-[calc(100vh-4rem)] flex`}>
+        <main className='h-[calc(100vh-4rem)] flex'>
             {/* Desktop View */}
             <section className='desktop-components'>
                 <Sidebar />
@@ -45,19 +45,15 @@ export default function MainContainer() {
             {/* Mobile View */}
             <div className='flex flex-col sm:hidden bg-[#f0f2ed]'>
                 <CardContainer />
-
                 <section className='flex h-16 z-20 bg-[#c3dadb]'>
-
                     <div onClick={openMobileCardsModal} className={`main-container-btn border-r border-gray-400 ${state.screenWidth.width < 500 ? 'p-0' : ''}`}>
                         <p className='text-center w-max'>View Cards</p>
                         <Bars3Icon className='icons' />
                     </div>
-
                     <div onClick={toggleAddCardMsg} className={`main-container-btn ${state.screenWidth.width < 500 ? 'p-0' : ''}`}>
                         <p className='text-center w-max'>Add Card</p>
                         <PlusCircleIcon className='icons' />
                     </div>
-
                 </section>
             </div>
         </main>

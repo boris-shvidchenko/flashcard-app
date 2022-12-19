@@ -4,8 +4,6 @@
 
 body {
     font-family: 'Inter', sans-serif; 
-    /* height: 100%;
-    overflow: hidden; */
 }
 
 .header-title {
@@ -13,7 +11,7 @@ body {
 }
 
 @layer components {
-    
+
     .main-section {
         @apply h-full overflow-hidden
     }
