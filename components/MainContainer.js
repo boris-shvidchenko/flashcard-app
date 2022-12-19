@@ -43,17 +43,21 @@ export default function MainContainer() {
                 <CardContainer />
             </section>
             {/* Mobile View */}
-            <div className='flex flex-col sm:hidden bg-[#f0f2ed] h-full'>
+            <div className='flex flex-col sm:hidden bg-[#f0f2ed]'>
                 <CardContainer />
+
                 <section className='flex h-16 z-20 bg-[#c3dadb]'>
-                    <div onClick={openMobileCardsModal} className='main-container-btn border-r border-gray-400'>
-                        <p className='text-center w-max'>View Cards</p>
-                        <Bars3Icon className='icons' />
+
+                    <div onClick={openMobileCardsModal} className={`main-container-btn border-r border-gray-400 ${state.screenWidth.width < 500 ? 'p-0' : ''}`}>
+                        <p className={`text-center w-max ${state.screenWidth.width < 500 ? '' : ''} border border-black`}>View Cards</p>
+                        <Bars3Icon className='icons border border-black' />
                     </div>
-                    <div onClick={toggleAddCardMsg} className='main-container-btn'>
-                        <p className='text-center w-max'>Add Card</p>
-                        <PlusCircleIcon className='icons' />
+
+                    <div onClick={toggleAddCardMsg} className={`main-container-btn ${state.screenWidth.width < 500 ? 'p-0' : ''}`}>
+                        <p className={`text-center w-max ${state.screenWidth.width < 500 ? '' : ''} border border-black`}>Add Card</p>
+                        <PlusCircleIcon className='icons border border-black' />
                     </div>
+
                 </section>
             </div>
         </main>
