@@ -9,7 +9,7 @@ body {
 }
 
 .header-title {
-    font-family: 'Roboto Slab', serif;
+    font-family: 'Merriweather', serif;
 }
 
 @layer components {
