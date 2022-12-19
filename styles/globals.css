@@ -17,6 +17,10 @@ body {
 
     /* scrollbar-thumb-rounded-md < Use this to round the scrollbar thumb */
 
+    .icons {
+        @apply w-6
+    }
+
     .desktop-components {
         @apply hidden sm:block
     }

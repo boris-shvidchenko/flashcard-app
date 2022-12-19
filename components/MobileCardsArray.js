@@ -61,12 +61,12 @@ export default function MobileCardsArray() {
 
                     <div onClick={openDltMsg} className='mobile-array-btn border-r border-gray-400 text-red-500'>
                         <p>Delete All</p>
-                        <TrashIcon className='w-6' />
+                        <TrashIcon className='icons' />
                     </div>
 
                     <div onClick={sortCards} className='mobile-array-btn'>
                         <p>Sort</p>
-                        <ChevronUpDownIcon className='w-6' />
+                        <ChevronUpDownIcon className='icons' />
                     </div>
                 </section>
 

@@ -61,7 +61,7 @@ export default function Card() {
 
             <section onClick={randomizeCard} className='hidden sm:flex cursor-pointer justify-center msg-btn w-36 py-1 space-x-2'>
                 <p className='w-14 text-center'>Shuffle</p>
-                <ArrowPathRoundedSquareIcon className='w-6' />
+                <ArrowPathRoundedSquareIcon className='icons' />
             </section>   
 
         </div>

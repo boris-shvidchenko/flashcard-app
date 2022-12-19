@@ -67,17 +67,17 @@ export default function MainContainer() {
 
                 <section onClick={randomizeCard} className='cursor-pointer flex justify-center p-1 w-28 space-x-3 select-none ml-[68%] mb-9 text-gray-700 text-lg'>
                     <p className='w-14 text-center hover:font-semibold'>Shuffle</p>
-                    <ArrowPathRoundedSquareIcon className='w-6' />
+                    <ArrowPathRoundedSquareIcon className='icons' />
                 </section> 
 
                 <section className='flex h-16 z-20 bg-[#c3dadb]'>
                     <div onClick={openMobileCardsModal} className='main-container-btn border-r border-gray-400'>
-                        <p className='text-center w-24'>View Cards</p>
-                        <Bars3Icon className='w-6' />
+                        <p className='text-center w-max'>View Cards</p>
+                        <Bars3Icon className='icons' />
                     </div>
                     <div onClick={toggleAddCardMsg} className='main-container-btn'>
-                        <p className='text-center w-24'>Add Card</p>
-                        <PlusCircleIcon className='w-6' />
+                        <p className='text-center w-max'>Add Card</p>
+                        <PlusCircleIcon className='icons' />
                     </div>
                 </section>
 

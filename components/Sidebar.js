@@ -55,7 +55,7 @@ export default function Sidebar() {
 
             <section onClick={toggleAddCardMsg} className='sidebar-section bg-[#e0fbfc]'>
                 <p className='sidebar-btn-text'>Add Card</p>
-                <PlusCircleIcon className='w-6' />
+                <PlusCircleIcon className='icons' />
             </section>
 
             <section onClick={sortCards} className='flex space-x-1 pl-[4.7rem] md:pl-[6.3rem] py-1 cursor-pointer text-sm border-b border-[#c3dadb] bg-[#c3dadb] hover:font-semibold'>
@@ -69,7 +69,7 @@ export default function Sidebar() {
 
             <section onClick={openDltMsg} className='sidebar-section bg-[#ee6c4d]'>
                 <p className='sidebar-btn-text'>Delete All</p>
-                <TrashIcon className='w-6' />
+                <TrashIcon className='icons' />
             </section>
 
         </div>
