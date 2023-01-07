@@ -5,12 +5,12 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 // Web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAuH_EmfmqVW9dnnU8TzUyjKIN8EURUTOo",
-    authDomain: "flashcards-5e43e.firebaseapp.com",
-    projectId: "flashcards-5e43e",
-    storageBucket: "flashcards-5e43e.appspot.com",
-    messagingSenderId: "346293108095",
-    appId: "1:346293108095:web:b35781ccc79fb33ff16e4a"
+    apiKey: process.env.NEXT_PUBLIC_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_APP_ID
   };
 
 // Initialize Firebase if not already initialized, otherwise use the already created app 
