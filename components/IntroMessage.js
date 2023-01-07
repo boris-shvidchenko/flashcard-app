@@ -25,8 +25,8 @@ export default function IntroMessage() {
     function logIn() {
         signInWithPopup(auth, provider)
             .then(() => console.log('User logged in'))
+            .then(() => dispatch({type:'toggleLoggedIn', userLoggedIn: true}))
             .catch(() => console.log('User closed the login window without logging in.'));
-        dispatch({type:'toggleLoggedIn', userLoggedIn: true});
         closeIntroMsg();
     }
 
